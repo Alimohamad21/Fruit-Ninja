@@ -1,8 +1,7 @@
-package Main;
+package main;
 
-import Factories.FruitFactory;
-import Fruits.Fruit;
-import Player.Player;
+import factories.FruitFactory;
+import player.Player;
 
 public class Test {
     public static void main(String[] args) {

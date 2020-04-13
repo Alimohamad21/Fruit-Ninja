@@ -1,4 +1,4 @@
-package Player;
+package player;
 
 ///Singleton
 public class Player {

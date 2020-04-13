@@ -1,6 +1,4 @@
-package Main;
-
-import Factories.FruitFactory;
+package main;
 
 public class Main {
 

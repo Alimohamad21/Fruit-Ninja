@@ -1,4 +1,4 @@
-package Fruits;
+package fruits;
 
 public abstract class Fruit {
     protected int fruitLife;    ////needed in super fruits

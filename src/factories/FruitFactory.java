@@ -1,9 +1,9 @@
-package Factories;
+package factories;
 
-import Fruits.Apple;
-import Fruits.Fruit;
-import Fruits.Mango;
-import Fruits.Orange;
+import fruits.Apple;
+import fruits.Fruit;
+import fruits.Mango;
+import fruits.Orange;
 
 public class FruitFactory {
 

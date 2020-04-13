@@ -1,6 +1,6 @@
-package Fruits;
+package fruits;
 
-public class Apple extends Fruit {
+public class Mango extends Fruit {
 
 
     public void setFruit() {
@@ -9,10 +9,11 @@ public class Apple extends Fruit {
         this.length = 2; //to be determined//
         this.width = 1; //to be determined//
         points = fruitLife * 10;
+
     }
 
     @Override
     public String FruitType() {
-        return "Apple";
+        return "Mango";
     }
 }
