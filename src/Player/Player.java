@@ -12,9 +12,10 @@ public class Player {
 
     public static Player getPlayer() {
         if (player == null) {
+            player = new Player();
             player.setPoints(0);
             player.setLife(3);
-            return player = new Player();
+            return  player;
         }
         return player;
     }
