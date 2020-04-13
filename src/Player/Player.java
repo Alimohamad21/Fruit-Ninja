@@ -15,7 +15,6 @@ public class Player {
             player = new Player();
             player.setPoints(0);
             player.setLife(3);
-            return  player;
         }
         return player;
     }
