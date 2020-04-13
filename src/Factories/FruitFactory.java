@@ -1,7 +1,18 @@
-package Fruits;
+package Factories;
 
+import Fruits.Apple;
+import Fruits.Fruit;
+import Fruits.Mango;
+import Fruits.Orange;
+
+///Singleton
 public class FruitFactory {
-
+    private static FruitFactory fruitFactory = new FruitFactory();
+    private FruitFactory() {
+    }
+    public static FruitFactory getFruitFactory() {
+        return fruitFactory;
+    }
 
     public Fruit create(String fruitType) throws NullPointerException {
         Fruit fruit = null;
