@@ -9,6 +9,8 @@ public abstract class Fruit {
 
 
     /////Methods
+    public abstract void setFruit();
+
     public String FruitType() {
         return null;
     }

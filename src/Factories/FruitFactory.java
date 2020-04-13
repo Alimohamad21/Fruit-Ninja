@@ -5,14 +5,7 @@ import Fruits.Fruit;
 import Fruits.Mango;
 import Fruits.Orange;
 
-///Singleton
 public class FruitFactory {
-    private static FruitFactory fruitFactory = new FruitFactory();
-    private FruitFactory() {
-    }
-    public static FruitFactory getFruitFactory() {
-        return fruitFactory;
-    }
 
     public Fruit create(String fruitType) throws NullPointerException {
         Fruit fruit = null;
@@ -22,6 +15,7 @@ public class FruitFactory {
             fruit = new Orange();
         if (fruitType.equalsIgnoreCase("Apple"))
             fruit = new Apple();
+        fruit.setFruit();
         return fruit;
     }
 }

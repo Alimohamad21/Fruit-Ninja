@@ -3,13 +3,12 @@ package Fruits;
 public class Apple extends Fruit {
 
 
-    public Apple() {
+    public void setFruit() {
         fruitLife = 1;
         sliced = false;
         this.length = 2; //to be determined//
         this.width = 1; //to be determined//
         points = fruitLife * 10;
-
     }
 
     @Override

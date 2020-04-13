@@ -3,7 +3,7 @@ package Fruits;
 public class Mango extends Fruit {
 
 
-    public Mango() {
+    public void setFruit() {
         fruitLife = 1;
         sliced = false;
         this.length = 2; //to be determined//

@@ -5,12 +5,17 @@ public class Player {
     private int points;
     private int life;
     private String userName;
+    private static Player player;
 
-    private static Player player = new Player();
-    private Player() {points=0;life=3;}
+    private Player() {
+    }
+
     public static Player getPlayer() {
+        if (player == null)
+            return player = new Player();
         return player;
     }
+
 
     ////Getters,Setters
 
