@@ -11,8 +11,11 @@ public class Player {
     }
 
     public static Player getPlayer() {
-        if (player == null)
+        if (player == null) {
+            player.setPoints(0);
+            player.setLife(3);
             return player = new Player();
+        }
         return player;
     }
 

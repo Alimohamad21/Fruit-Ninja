@@ -6,7 +6,7 @@ import Player.Player;
 
 public class Test {
     public static void main(String[] args) {
-         Player player=Player.getPlayer();
+        Player player=Player.getPlayer();
         System.out.println(player);
         Player player1=Player.getPlayer();
         System.out.println(player1);
