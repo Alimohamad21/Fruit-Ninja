@@ -1,0 +1,16 @@
+package gameObject.fruits;
+
+public class Orange extends Fruit {
+
+
+    public void Orange() {
+        objectLife = 1;
+        sliced = false;
+        this.length = 2; //to be determined//
+        this.width = 1; //to be determined//
+        points = objectLife * 10;
+
+    }
+
+
+}

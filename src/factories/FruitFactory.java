@@ -1,9 +1,9 @@
 package factories;
 
-import fruits.Apple;
-import fruits.Fruit;
-import fruits.Mango;
-import fruits.Orange;
+import gameObject.fruits.Apple;
+import gameObject.fruits.Fruit;
+import gameObject.fruits.Mango;
+import gameObject.fruits.Orange;
 
 public class FruitFactory {
 
@@ -15,7 +15,7 @@ public class FruitFactory {
             fruit = new Orange();
         if (fruitType.equalsIgnoreCase("Apple"))
             fruit = new Apple();
-        fruit.setFruit();
+     //   fruit.setFruit();
         return fruit;
     }
 }
