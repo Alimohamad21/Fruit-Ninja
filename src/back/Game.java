@@ -1,6 +1,7 @@
 package back;
 
 import gameObject.fruits.Apple;
+import gameObject.fruits.Mango;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -21,6 +22,8 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
         handler = new Handler();
         handler.addObject(new Apple(WIDTH / 2 - 32, HEIGHT - 33));
+        Mango mango = new Mango();
+        System.out.println(mango.isSliced()+ "" + mango.getObjectType());
     }
 
     public synchronized void start() {
