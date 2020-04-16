@@ -1,5 +1,7 @@
 package back;
 
+import gameObject.GameObject;
+
 import java.awt.Graphics;
 import java.util.LinkedList;
 

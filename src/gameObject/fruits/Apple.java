@@ -2,8 +2,10 @@ package gameObject.fruits;
 
 public class Apple extends Fruit {
 
+    public Apple() {};
 
-    public void Apple() {
+    public Apple(int x, int y) {
+        super(x, y);
         objectLife = 1;
         sliced = false;
         this.length = 2; //to be determined//

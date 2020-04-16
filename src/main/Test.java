@@ -1,7 +1,5 @@
 package main;
 
-import factories.FruitFactory;
-import gameObject.fruits.Fruit;
 import gameObject.fruits.Mango;
 
 public class Test {

@@ -1,4 +1,4 @@
-package gameObject.player;
+package main;
 
 ///Singleton
 public class Player {
