@@ -1,4 +1,4 @@
-package back;
+package initilalizer;
 
 import gameObject.GameObject;
 

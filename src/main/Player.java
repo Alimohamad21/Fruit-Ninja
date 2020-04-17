@@ -6,7 +6,6 @@ public class Player {
     private int life;
     private String userName;
     private static Player player;
-
     private Player() {
     }
 

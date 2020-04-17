@@ -1,4 +1,4 @@
-package back;
+package initilalizer;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -9,7 +9,7 @@ public class Window extends Canvas{
 
 	private static final long serialVersionUID = -6374877296636020057L;
 
-	public Window(int width,int height,String title,Game game) {
+	public Window(int width,int height,String title,NormalDiff game) {
 		JFrame frame= new JFrame(title);
 		
 		frame.setPreferredSize(new Dimension(width,height));

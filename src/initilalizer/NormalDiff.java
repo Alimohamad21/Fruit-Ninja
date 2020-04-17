@@ -1,8 +1,9 @@
-package back;
+package initilalizer;
 
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,11 +11,12 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import factories.FruitFactory;
 import gameObject.fruits.Apple;
 
-public class Game extends Canvas implements Runnable {
+public class NormalDiff extends Canvas implements Runnable, IDifficulties{
     private static final long serialVersionUID = 2916851953456180804L;
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
 
@@ -23,27 +25,36 @@ public class Game extends Canvas implements Runnable {
     private Handler handler;
     FruitFactory factory=new FruitFactory();
     Random randomNumber = new Random();
-    
-    private BufferedImage img = null;
-	String filePath = new File("images/background.jpg").getAbsolutePath();
-	File file=new File(filePath);
-
-    public Game() {
+    private BufferedImage img1 = null;
+	/*String filePath = new File("/project3/background.jpg").getAbsolutePath();
+	File file=new File(filePath);*/
+	//Image img1= new ImageIcon(this.getClass().getResource("background.jpg")).getImage();
+    //BufferedImage img1 = ImageIO.read(this.getClass().getResource("background.jpg"));
+    //ImageIcon icon = new ImageIcon(image);
+        public NormalDiff() {
         new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
         handler = new Handler();
-        for(int i=0;i<5;i++) {
+        int noofobjects;
+        Random r = new Random();
+        noofobjects = r.nextInt(4) + 1;
+        for(int i=0;i<noofobjects;i++) {
         int option=randomNumber.nextInt(5);
         switch (option) {
         case 0:
         handler.addObject(factory.create("Watermelon"));
+        break;
         case 1:
        	handler.addObject(factory.create("Apple"));
+       	break;
         case 2:
         handler.addObject(factory.create("Banana"));
+        break;
         case 3:
         handler.addObject(factory.create("Peach"));
+        break;
         case 4:
         handler.addObject(factory.create("Strawberry"));
+        break;
         }
         try {
 			thread.sleep(1000);
@@ -97,11 +108,11 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
-    private void tick() {
+    public void tick() {
         handler.tick();
     }
 
-    private void render() {
+    public void render() {
         BufferStrategy bufferSt = this.getBufferStrategy();
         if (bufferSt == null) {
             this.createBufferStrategy(3);
@@ -110,13 +121,13 @@ public class Game extends Canvas implements Runnable {
         Graphics graphics = bufferSt.getDrawGraphics();
         try
 		{
-		    img = ImageIO.read(file);
+        	img1 = ImageIO.read(this.getClass().getResource("background.jpg"));
 		}
 		catch ( IOException exc )
 		{
 		    System.out.println("mizak");
 		}
-		graphics.drawImage(img,0,0, null);
+		graphics.drawImage(img1,0,0, null);
         
         //graphics.setColor(Color.GRAY);
         //graphics.fillRect(0, 0, WIDTH, HEIGHT);
@@ -125,8 +136,8 @@ public class Game extends Canvas implements Runnable {
         bufferSt.show();
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         new Game();
     }
-
+*/
 }

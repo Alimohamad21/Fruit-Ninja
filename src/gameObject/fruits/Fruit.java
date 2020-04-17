@@ -1,7 +1,7 @@
 package gameObject.fruits;
 
-import back.Game;
 import gameObject.GameObject;
+import initilalizer.NormalDiff;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -34,7 +34,9 @@ public abstract class Fruit extends GameObject {
         xCoordinate += velocityX;
         if (xCoordinate + this.width <= 0 || xCoordinate + this.width>= 600 ) velocityX *= -1;
         yCoordinate += velocityY;
-        if (yCoordinate <= Game.HEIGHT / 3 - 32 || yCoordinate >= Game.HEIGHT - 32) velocityY *= -1;
+        if (yCoordinate <= NormalDiff.HEIGHT / 3-100 || yCoordinate >= NormalDiff.HEIGHT - 32) velocityY *= -1;
+        
+        
     }
 
     public void render(Graphics graphics) {

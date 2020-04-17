@@ -1,7 +1,9 @@
 package factories;
 
-import static back.Game.HEIGHT;
-import static back.Game.WIDTH;
+import static initilalizer.NormalDiff.HEIGHT;
+import static initilalizer.NormalDiff.WIDTH;
+
+import java.util.Random;
 
 import gameObject.fruits.Apple;
 import gameObject.fruits.Banana;
@@ -13,17 +15,19 @@ import gameObject.fruits.Watermelon;
 public class FruitFactory {
 
     public Fruit create(String fruitType) throws NullPointerException {
+    	Random r=new Random();
+    	int x_axis=r.nextInt(WIDTH/2);
         Fruit fruit = null;
         if (fruitType.equalsIgnoreCase("Strawberry")) ;
-        fruit = new Strawberry(WIDTH / 2 - 32, HEIGHT - 33);
+        fruit = new Strawberry(x_axis, HEIGHT - 33);
         if (fruitType.equalsIgnoreCase("Watermelon")) ;
-        fruit = new Watermelon(WIDTH / 2 - 32, HEIGHT - 33);
+        fruit = new Watermelon(x_axis, HEIGHT - 33);
         if (fruitType.equalsIgnoreCase("Apple"))
-            fruit = new Apple(WIDTH / 2 - 32, HEIGHT - 33);
+            fruit = new Apple(x_axis, HEIGHT - 33);
         if (fruitType.equalsIgnoreCase("Peach"))
-            fruit = new Peach(WIDTH / 2 - 32, HEIGHT - 33);
+            fruit = new Peach(x_axis, HEIGHT - 33);
         if (fruitType.equalsIgnoreCase("Banana"))
-            fruit = new Banana(WIDTH / 2 - 32, HEIGHT - 33);
+            fruit = new Banana(x_axis, HEIGHT - 33);
         return fruit;
     }
 }

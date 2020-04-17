@@ -1,18 +1,21 @@
 package gameObject.fruits;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class Apple extends Fruit {
 
     public Apple() {};
-    private BufferedImage img = null;
-	String filePath = new File("images/fruit/apple.png").getAbsolutePath();
-	File file=new File(filePath);
+    private BufferedImage img1 = null;
+	/*String filePath = new File("/project3/fruitimgs/apple.png").getAbsolutePath();
+	File file=new File(filePath);*/
+	//Image img1= new ImageIcon(this.getClass().getResource("apple.png")).getImage();
 
     public Apple(int x, int y) {
         super(x, y);
@@ -25,12 +28,12 @@ public class Apple extends Fruit {
     public void render(Graphics graphics) {
 		try
 		{
-		    img = ImageIO.read(file);
+        	img1 = ImageIO.read(this.getClass().getResource("apple.png"));
 		}
 		catch ( IOException exc )
 		{
 		    System.out.println("mizak");
 		}
-		graphics.drawImage(img, xCoordinate,yCoordinate, null);
+		graphics.drawImage(img1, xCoordinate,yCoordinate, null);
     }
 }
