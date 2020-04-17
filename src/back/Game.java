@@ -1,13 +1,13 @@
 package back;
 
-import gameObject.fruits.Apple;
-import gameObject.fruits.Mango;
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
+
+import factories.FruitFactory;
+import gameObject.fruits.Apple;
 
 public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 2916851953456180804L;
@@ -16,14 +16,32 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
     private Handler handler;
+    FruitFactory factory=new FruitFactory();
     Random randomNumber = new Random();
 
     public Game() {
         new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
         handler = new Handler();
-        handler.addObject(new Apple(WIDTH / 2 - 32, HEIGHT - 33));
-        Mango mango = new Mango();
-        System.out.println(mango.isSliced()+ "" + mango.getObjectType());
+        for(int i=0;i<5;i++) {
+        int option=randomNumber.nextInt(5);
+        switch (option) {
+        case 0:
+        handler.addObject(factory.create("Watermelon"));
+        case 1:
+       	handler.addObject(factory.create("Apple"));
+        case 2:
+        handler.addObject(factory.create("Banana"));
+        case 3:
+        handler.addObject(factory.create("Peach"));
+        case 4:
+        handler.addObject(factory.create("Strawberry"));
+        }
+        try {
+			thread.sleep(1000);
+		} catch (InterruptedException e) {
+			System.out.println("thread stuck generating fruits");
+		}
+        }
     }
 
     public synchronized void start() {

@@ -26,15 +26,15 @@ public abstract class Fruit extends GameObject {
 
     public Fruit(int x, int y) {
         super(x, y);
-        velocityX = 2;
-        velocityY = 2;
+        velocityX = 1;
+        velocityY = 4;
     }
 
     public void tick() {
         xCoordinate += velocityX;
         if (xCoordinate + this.width <= 0 || xCoordinate + this.width>= 600 ) velocityX *= -1;
         yCoordinate += velocityY;
-        if (yCoordinate <= Game.HEIGHT / 2 - 32 || yCoordinate >= Game.HEIGHT - 32) velocityY *= -1;
+        if (yCoordinate <= Game.HEIGHT / 3 - 32 || yCoordinate >= Game.HEIGHT - 32) velocityY *= -1;
     }
 
     public void render(Graphics graphics) {

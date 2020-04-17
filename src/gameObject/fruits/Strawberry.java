@@ -7,14 +7,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Apple extends Fruit {
+public class Strawberry extends Fruit {
 
-    public Apple() {};
+    public Strawberry() {};
     private BufferedImage img = null;
-	String filePath = new File("images/fruit/apple.png").getAbsolutePath();
+	String filePath = new File("images/fruit/basaha.png").getAbsolutePath();
 	File file=new File(filePath);
 
-    public Apple(int x, int y) {
+    public Strawberry(int x, int y) {
         super(x, y);
         objectLife = 1;
         sliced = false;
