@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>images</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Desktop/images</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

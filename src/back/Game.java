@@ -4,7 +4,12 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 import factories.FruitFactory;
 import gameObject.fruits.Apple;
@@ -18,6 +23,10 @@ public class Game extends Canvas implements Runnable {
     private Handler handler;
     FruitFactory factory=new FruitFactory();
     Random randomNumber = new Random();
+    
+    private BufferedImage img = null;
+	String filePath = new File("images/background.jpg").getAbsolutePath();
+	File file=new File(filePath);
 
     public Game() {
         new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
@@ -99,8 +108,18 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics graphics = bufferSt.getDrawGraphics();
-        graphics.setColor(Color.GRAY);
-        graphics.fillRect(0, 0, WIDTH, HEIGHT);
+        try
+		{
+		    img = ImageIO.read(file);
+		}
+		catch ( IOException exc )
+		{
+		    System.out.println("mizak");
+		}
+		graphics.drawImage(img,0,0, null);
+        
+        //graphics.setColor(Color.GRAY);
+        //graphics.fillRect(0, 0, WIDTH, HEIGHT);
         handler.render(graphics);
         graphics.dispose();
         bufferSt.show();
