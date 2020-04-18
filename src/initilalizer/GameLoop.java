@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -24,30 +25,38 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     private BufferedImage img1;
 
 
-    public GameLoop() {
+    public GameLoop() {int count=0;
         new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
         handler = new Handler();
         MP3Player mp3Player=new MP3Player(new File("throw.mp3"));
         MP3Player mp3Player1=new MP3Player(new File("menu.mp3"));
         mp3Player1.setRepeat(true);
-        mp3Player.setRepeat(true);
         mp3Player1.play();
         /**lazem tt7at f 7eta tanya class init or sth**/
         FruitFactory factory = new FruitFactory();
-        Difficulty difficulty = initilalizer.Difficulty.getDifficulty();
+        //Difficulty difficulty = initilalizer.Difficulty.getDifficulty();
+        Random numberOfFruits=new Random();
+        Random interval=new Random();
+        int random=0;
+
         while(true){
-        for (int i = 0; i < difficulty.getFruitNumberPerMoment(); i++) {
+            random=numberOfFruits.nextInt(6)+3;
+            System.out.println(random);
+        for (int i = 0; i <random ; i++) {
             fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
             handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
             mp3Player.play();
-
-
             try {
+                Thread.sleep(100+interval.nextInt(500));
+            }catch(InterruptedException e){
+                System.out.println("Ali");
+            }
+        }
+            try {handler.removeOutOfBoundObjects();
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 System.out.println("thread stuck generating fruits");
             }
-        }
         }
 
     }

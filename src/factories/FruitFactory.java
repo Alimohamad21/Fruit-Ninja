@@ -16,7 +16,7 @@ public class FruitFactory {
 
     public Fruit create(String fruitType) throws NullPointerException {
         Random r = new Random();
-        int x_axis = r.nextInt(WIDTH / 2);
+        int x_axis = r.nextInt(WIDTH-80);
         Fruit fruit = null;
         if (fruitType.equalsIgnoreCase("Strawberry"))
             fruit = new Strawberry(x_axis, HEIGHT - 33);

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static initilalizer.GameLoop.HEIGHT;
+
 public class Handler {
     //LinkedList<GameObject> listOfObjects=new LinkedList<GameObject>();
     List<GameObject> listOfObjects;
@@ -36,7 +38,11 @@ public class Handler {
         this.listOfObjects.add(object);
     }
 
-  /*  public void removeObject(GameObject object) {
-        this.listOfObjects.remove(object);
-    }*/
+    public void removeOutOfBoundObjects() {
+            for (int i = 0; i < listOfObjects.size(); i++) {
+         //       if (listOfObjects.get(i).getYCoordinate() >= GameLoop.HEIGHT )
+                    listOfObjects.remove(i);
+            }
+
+    }
 }

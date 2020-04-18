@@ -22,12 +22,14 @@ public abstract class Fruit extends GameObject {
     public Fruit(int x, int y) {
         super(x, y);
         velocityX = 0;
-        velocityY = 4;
+        velocityY = 6;
     }
 
     public void tick() {
         yCoordinate += velocityY;
-        if (yCoordinate <= GameLoop.HEIGHT / 3-100 || yCoordinate >= GameLoop.HEIGHT - 32) velocityY *= -1;
+        if (yCoordinate <= GameLoop.HEIGHT / 3-100 || yCoordinate >= GameLoop.HEIGHT - 32) {
+            velocityY *= -1;
+        }
     }
 
     public void render(Graphics graphics) {
