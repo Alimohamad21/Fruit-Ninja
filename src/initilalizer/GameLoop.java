@@ -38,11 +38,13 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
         Random numberOfFruits=new Random();
         Random interval=new Random();
         int random=0;
+        int fruitcount=0;
 
         while(true){
             random=numberOfFruits.nextInt(6)+3;
-            System.out.println(random);
-        for (int i = 0; i <random ; i++) {
+            fruitcount+=random;
+            System.out.println("fruits created:"+fruitcount);
+            for (int i = 0; i <random ; i++) {
             fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
             handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
             mp3Player.play();
@@ -52,7 +54,7 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
                 System.out.println("Ali");
             }
         }
-            try {handler.removeOutOfBoundObjects();
+            try {while(!handler.listOfObjects.isEmpty())handler.removeOutOfBoundObjects();
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 System.out.println("thread stuck generating fruits");

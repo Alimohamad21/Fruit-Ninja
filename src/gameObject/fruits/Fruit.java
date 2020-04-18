@@ -9,6 +9,7 @@ import java.awt.Graphics;
 public abstract class Fruit extends GameObject {
 
     protected ObjectType objectType = ObjectType.fruit;
+    private boolean flag = false;
 
     @Override
     public ObjectType getObjectType() {
@@ -16,8 +17,10 @@ public abstract class Fruit extends GameObject {
     }
 
 
+    public Fruit() {
+    }
 
-    public Fruit() {};
+    ;
 
     public Fruit(int x, int y) {
         super(x, y);
@@ -27,15 +30,17 @@ public abstract class Fruit extends GameObject {
 
     public void tick() {
         yCoordinate += velocityY;
-        if (yCoordinate <= GameLoop.HEIGHT / 3-100 || yCoordinate >= GameLoop.HEIGHT - 32) {
+        if (flag == true && yCoordinate == GameLoop.HEIGHT - 32) yCoordinate = GameLoop.HEIGHT;
+        if (yCoordinate <= GameLoop.HEIGHT / 3 - 100 || (yCoordinate >= GameLoop.HEIGHT - 32 && !flag)) {
             velocityY *= -1;
+            flag = true;
         }
     }
 
     public void render(Graphics graphics) {
-        graphics.setColor(Color.white);
+        //graphics.setColor(Color.white);
         //graphics.fillRect(xCoordinate, yCoordinate, 32, 32);
-        graphics.fillRoundRect(xCoordinate, yCoordinate, 32, 32, 32, 32);
+        //graphics.fillRoundRect(xCoordinate, yCoordinate, 32, 32, 32, 32);
     }
 
 }
