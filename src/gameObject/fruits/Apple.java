@@ -35,6 +35,6 @@ public class Apple extends Fruit {
 		{
 		    System.out.println("Apple rendering failed");
 		}
-		graphics.drawImage(img1, xCoordinate,yCoordinate, null);
+		graphics.drawImage(img1,(int) xCoordinate,(int)yCoordinate, null);
     }
 }

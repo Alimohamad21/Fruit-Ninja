@@ -34,6 +34,6 @@ public class Strawberry extends Fruit {
 		{
 		    System.out.println("Strawberry rendering failed");
 		}
-		graphics.drawImage(img1, xCoordinate,yCoordinate, null);
+		graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
     }
 }

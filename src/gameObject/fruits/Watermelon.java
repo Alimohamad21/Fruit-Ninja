@@ -34,6 +34,6 @@ public class Watermelon extends Fruit {
 		{
 		    System.out.println("Watermelon rendering failed");
 		}
-		graphics.drawImage(img1, xCoordinate,yCoordinate, null);
+		graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
     }
 }

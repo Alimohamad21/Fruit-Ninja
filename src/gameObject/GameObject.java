@@ -3,8 +3,8 @@ package gameObject;
 import java.awt.Graphics;
 
 public abstract class GameObject {
-    protected int xCoordinate, yCoordinate;
-    protected int velocityX, velocityY;
+    protected double xCoordinate, yCoordinate;
+    protected double velocityX, velocityY;
     protected int objectLife;
     protected float length;
     protected float width;
@@ -33,7 +33,7 @@ public abstract class GameObject {
      * Getters & Setters
      **/
 
-    public int getXCoordinate() {
+    public double getXCoordinate() {
         return xCoordinate;
     }
 
@@ -41,7 +41,7 @@ public abstract class GameObject {
         this.xCoordinate = xCoordinate;
     }
 
-    public int getYCoordinate() {
+    public  double getYCoordinate() {
         return yCoordinate;
     }
 
@@ -49,7 +49,7 @@ public abstract class GameObject {
         this.yCoordinate = yCoordinate;
     }
 
-    public int getVelocityX() {
+    public  double getVelocityX() {
         return velocityX;
     }
 
@@ -57,7 +57,7 @@ public abstract class GameObject {
         this.velocityX = velocityX;
     }
 
-    public int getVelocityY() {
+    public  double getVelocityY() {
         return velocityY;
     }
 
