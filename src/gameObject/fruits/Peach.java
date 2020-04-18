@@ -32,7 +32,7 @@ public class Peach extends Fruit {
 		}
 		catch ( IOException exc )
 		{
-		    System.out.println("mizak");
+		    System.out.println("Peach rendering failed");
 		}
 		graphics.drawImage(img1, xCoordinate,yCoordinate, null);
     }

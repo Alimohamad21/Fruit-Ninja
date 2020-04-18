@@ -32,7 +32,7 @@ public class Strawberry extends Fruit {
 		}
 		catch ( IOException exc )
 		{
-		    System.out.println("mizak");
+		    System.out.println("Strawberry rendering failed");
 		}
 		graphics.drawImage(img1, xCoordinate,yCoordinate, null);
     }

@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 public class Apple extends Fruit {
 
     public Apple() {};
-    private BufferedImage img1 = null;
 	/*String filePath = new File("/project3/fruitimgs/apple.png").getAbsolutePath();
 	File file=new File(filePath);*/
 	//Image img1= new ImageIcon(this.getClass().getResource("apple.png")).getImage();
@@ -26,13 +25,15 @@ public class Apple extends Fruit {
         points = objectLife * 10;
     }
     public void render(Graphics graphics) {
-		try
+        BufferedImage img1 = null;
+
+        try
 		{
         	img1 = ImageIO.read(this.getClass().getResource("apple.png"));
 		}
 		catch ( IOException exc )
 		{
-		    System.out.println("mizak");
+		    System.out.println("Apple rendering failed");
 		}
 		graphics.drawImage(img1, xCoordinate,yCoordinate, null);
     }

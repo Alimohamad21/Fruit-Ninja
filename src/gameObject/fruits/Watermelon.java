@@ -32,7 +32,7 @@ public class Watermelon extends Fruit {
 		}
 		catch ( IOException exc )
 		{
-		    System.out.println("mizak");
+		    System.out.println("Watermelon rendering failed");
 		}
 		graphics.drawImage(img1, xCoordinate,yCoordinate, null);
     }
