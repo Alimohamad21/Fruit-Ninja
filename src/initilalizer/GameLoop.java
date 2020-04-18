@@ -29,6 +29,7 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
         handler = new Handler();
         MP3Player mp3Player=new MP3Player(new File("throw.mp3"));
         MP3Player mp3Player1=new MP3Player(new File("menu.mp3"));
+        mp3Player1.setRepeat(true);
         mp3Player.setRepeat(true);
         mp3Player1.play();
         /**lazem tt7at f 7eta tanya class init or sth**/
