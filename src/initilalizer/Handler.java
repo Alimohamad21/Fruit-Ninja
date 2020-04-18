@@ -13,6 +13,8 @@ public class Handler {
     //LinkedList<GameObject> listOfObjects=new LinkedList<GameObject>();
     List<GameObject> listOfObjects;
     private int deletedFruits=0;
+    private int missedFruits=0;
+
 
     public Handler() {
         this.listOfObjects = new ArrayList<>();
@@ -44,6 +46,9 @@ public class Handler {
                if (listOfObjects.get(i).getYCoordinate() >= GameLoop.HEIGHT ) {
                    listOfObjects.remove(i);
                    System.out.println("deleted:" + (++deletedFruits));
+                   missedFruits++;
+                   if(missedFruits==3)
+                       System.out.println("GAME OVER");
                }
 
             }

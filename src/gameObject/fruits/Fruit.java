@@ -5,6 +5,7 @@ import initilalizer.GameLoop;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 public abstract class Fruit extends GameObject {
 
@@ -24,13 +25,18 @@ public abstract class Fruit extends GameObject {
 
     public Fruit(int x, int y) {
         super(x, y);
-        velocityX = 0;
+        Random randomDirection=new Random();
+     if(xCoordinate<200)
+     velocityX=1;
+     else
+     {velocityX = -1+randomDirection.nextInt(3);}
         velocityY = 6;
     }
 
     public void tick() {
+        xCoordinate+=velocityX;
         yCoordinate += velocityY;
-        if (flag == true && yCoordinate == GameLoop.HEIGHT - 32) yCoordinate = GameLoop.HEIGHT;
+        if (flag&& yCoordinate == GameLoop.HEIGHT - 32) yCoordinate = GameLoop.HEIGHT;
         if (yCoordinate <= GameLoop.HEIGHT / 3 - 100 || (yCoordinate >= GameLoop.HEIGHT - 32 && !flag)) {
             velocityY *= -1;
             flag = true;

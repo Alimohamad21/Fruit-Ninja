@@ -49,16 +49,12 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
             handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
             mp3Player.play();
             try {
-                Thread.sleep(100+interval.nextInt(500));
+                Thread.sleep(100+interval.nextInt(400));
             }catch(InterruptedException e){
                 System.out.println("Ali");
             }
         }
-            try {while(!handler.listOfObjects.isEmpty())handler.removeOutOfBoundObjects();
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println("thread stuck generating fruits");
-            }
+            while(!handler.listOfObjects.isEmpty())handler.removeOutOfBoundObjects();
         }
 
     }
