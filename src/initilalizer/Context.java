@@ -16,11 +16,11 @@ public class Context {
         if (difficulty.equalsIgnoreCase("Easy")) {
 
         } else if (difficulty.equalsIgnoreCase("Normal")) {
-            difficulties = new gameLoop();
+            difficulties = new GameLoop();
         } else if (difficulty.equalsIgnoreCase("Hard")) {
 
         } else {
-            difficulties = new gameLoop();
+            difficulties = new GameLoop();
         }
     }
 }

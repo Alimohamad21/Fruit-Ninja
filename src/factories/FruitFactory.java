@@ -1,7 +1,7 @@
 package factories;
 
-import static initilalizer.gameLoop.HEIGHT;
-import static initilalizer.gameLoop.WIDTH;
+import static initilalizer.GameLoop.HEIGHT;
+import static initilalizer.GameLoop.WIDTH;
 
 import java.util.Random;
 

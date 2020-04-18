@@ -1,11 +1,10 @@
 package gameObject.fruits;
 
 import gameObject.GameObject;
-import initilalizer.gameLoop;
+import initilalizer.GameLoop;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
 
 public abstract class Fruit extends GameObject {
 
@@ -22,17 +21,13 @@ public abstract class Fruit extends GameObject {
 
     public Fruit(int x, int y) {
         super(x, y);
-        velocityX = 1;
+        velocityX = 0;
         velocityY = 4;
     }
 
     public void tick() {
-        xCoordinate += velocityX;
-        if (xCoordinate + this.width <= 0 || xCoordinate + this.width>= 600 ) velocityX *= -1;
         yCoordinate += velocityY;
-        if (yCoordinate <= gameLoop.HEIGHT / 3-100 || yCoordinate >= gameLoop.HEIGHT - 32) velocityY *= -1;
-        
-        
+        if (yCoordinate <= GameLoop.HEIGHT / 3-100 || yCoordinate >= GameLoop.HEIGHT - 32) velocityY *= -1;
     }
 
     public void render(Graphics graphics) {

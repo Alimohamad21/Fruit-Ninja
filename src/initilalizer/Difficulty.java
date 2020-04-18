@@ -1,17 +1,17 @@
 package initilalizer;
 
-public class difficulty {
+public class Difficulty {
 
     private int fruitSpeed;
     private int fruitNumberPerMoment;
     private int bombSpeed;
     private int bombNumberPerMoment;
-    private static difficulty difficulty = new difficulty();
+    private static Difficulty difficulty = new Difficulty();
 
-    private difficulty() {
+    private Difficulty() {
     }
 
-    public static difficulty getDifficulty() {
+    public static Difficulty getDifficulty() {
         return difficulty;
     }
 
@@ -58,7 +58,7 @@ public class difficulty {
         this.bombNumberPerMoment = bombNumberPerMoment;
     }
 
-    public static void setDifficulty(initilalizer.difficulty difficulty) {
-        initilalizer.difficulty.difficulty = difficulty;
+    public static void setDifficulty(Difficulty difficulty) {
+        Difficulty.difficulty = difficulty;
     }
 }

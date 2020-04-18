@@ -4,17 +4,19 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 
 import factories.FruitFactory;
 import gameObject.fruits.fruitTypes;
+import jaco.mp3.player.MP3Player;
 
-public class gameLoop extends Canvas implements Runnable, IMainGameActions {
+public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     private static final long serialVersionUID = 2916851953456180804L;
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+
 
     private Thread thread;
     private boolean running = false;
@@ -22,16 +24,21 @@ public class gameLoop extends Canvas implements Runnable, IMainGameActions {
     private BufferedImage img1;
 
 
-    public gameLoop() {
+    public GameLoop() {
         new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
         handler = new Handler();
-
+        MP3Player mp3Player=new MP3Player(new File("throw.mp3"));
+        MP3Player mp3Player1=new MP3Player(new File("menu.mp3"));
+        mp3Player.setRepeat(true);
+        mp3Player1.play();
         /**lazem tt7at f 7eta tanya class init or sth**/
         FruitFactory factory = new FruitFactory();
-        difficulty Difficulty = difficulty.getDifficulty();
-        for (int i = 0; i < Difficulty.getFruitNumberPerMoment(); i++) {
+        Difficulty difficulty = initilalizer.Difficulty.getDifficulty();
+        while(true){
+        for (int i = 0; i < difficulty.getFruitNumberPerMoment(); i++) {
             fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
             handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
+            mp3Player.play();
 
 
             try {
@@ -39,6 +46,7 @@ public class gameLoop extends Canvas implements Runnable, IMainGameActions {
             } catch (InterruptedException e) {
                 System.out.println("thread stuck generating fruits");
             }
+        }
         }
 
     }
@@ -50,6 +58,7 @@ public class gameLoop extends Canvas implements Runnable, IMainGameActions {
         thread = new Thread(this);
         thread.start();
         running = true;
+
     }
 
     public synchronized void stop() {

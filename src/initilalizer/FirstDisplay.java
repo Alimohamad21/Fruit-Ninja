@@ -61,7 +61,7 @@ public class FirstDisplay extends JFrame {
 
     public void initFirstDisplay() {
         // Context co = new Context();
-        difficulty Difficulty = difficulty.getDifficulty();
+        Difficulty Difficulty = initilalizer.Difficulty.getDifficulty();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(550, 200, 700, 400);
@@ -83,7 +83,7 @@ public class FirstDisplay extends JFrame {
 
         proceed.addActionListener(e -> {
             dispose();
-            gameLoop gameActions = new gameLoop();
+            GameLoop gameActions = new GameLoop();
             gameActions.initObjects();
             // co.starter();
         });
