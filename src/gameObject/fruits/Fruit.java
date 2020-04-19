@@ -26,11 +26,13 @@ public abstract class Fruit extends GameObject {
     public Fruit(int x, int y) {
         super(x, y);
         Random randomDirection=new Random();
-     if(xCoordinate<200)
-     velocityX=1;
-     else
-     {velocityX = -1+randomDirection.nextInt(3);}
-        velocityY = 6;
+        if(xCoordinate<200)
+            velocityX=1.5;
+        else if(xCoordinate>300)
+            velocityX=-1.5;
+        else
+        {velocityX = -2+randomDirection.nextInt(5);}
+        velocityY =8;
     }
 
     public void tick() {
@@ -38,7 +40,7 @@ public abstract class Fruit extends GameObject {
         yCoordinate -= velocityY;
         Random maxHeight=new Random();
         if (flag&& yCoordinate == GameLoop.HEIGHT - 32) yCoordinate = GameLoop.HEIGHT;
-      if (yCoordinate <= maxHeight.nextInt(150) || (yCoordinate >= GameLoop.HEIGHT - 32 && !flag)) {
+        if (yCoordinate <= maxHeight.nextInt(300) || (yCoordinate >= GameLoop.HEIGHT - 32 && !flag)) {
             velocityY-=0.35;
             flag = true;
         }

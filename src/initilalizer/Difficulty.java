@@ -6,6 +6,7 @@ public class Difficulty {
     private int fruitNumberPerMoment;
     private int bombSpeed;
     private int bombNumberPerMoment;
+    private int timeBetweenLoops;
     private static Difficulty difficulty = new Difficulty();
 
     private Difficulty() {
@@ -17,10 +18,10 @@ public class Difficulty {
 
     public void setNormalDifficulty() {
         fruitSpeed = 5;
-        fruitNumberPerMoment = 6;
+        fruitNumberPerMoment = 4;
         bombSpeed = 5;
         bombNumberPerMoment = 3;
-
+        timeBetweenLoops = 100;
     }
 
     /**
@@ -60,5 +61,13 @@ public class Difficulty {
 
     public static void setDifficulty(Difficulty difficulty) {
         Difficulty.difficulty = difficulty;
+    }
+
+    public int getTimeBetweenLoops() {
+        return timeBetweenLoops;
+    }
+
+    public void setTimeBetweenLoops(int timeBetweenLoops) {
+        this.timeBetweenLoops = timeBetweenLoops;
     }
 }

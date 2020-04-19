@@ -2,6 +2,10 @@ package initilalizer;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,6 +17,7 @@ import javax.imageio.ImageIO;
 import factories.FruitFactory;
 import gameObject.fruits.fruitTypes;
 import jaco.mp3.player.MP3Player;
+import main.Player;
 
 public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     private static final long serialVersionUID = 2916851953456180804L;
@@ -23,42 +28,47 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     private boolean running = false;
     private Handler handler;
     private BufferedImage img1;
+    Window window;
 
-
-    public GameLoop() {int count=0;
-        new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
+    public GameLoop() {
         handler = new Handler();
-        MP3Player mp3Player=new MP3Player(new File("throw.mp3"));
-        MP3Player mp3Player1=new MP3Player(new File("menu.mp3"));
+        this.addMouseListener(new Slicing());
+        window = new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
+        window.addMouseListener(new Slicing());
+    }
+
+    public void initObjects() {
+        int count = 0;
+        MP3Player mp3Player = new MP3Player(new File("throw.mp3"));
+        MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
         mp3Player1.setRepeat(true);
         mp3Player1.play();
-        /**lazem tt7at f 7eta tanya class init or sth**/
         FruitFactory factory = new FruitFactory();
-        //Difficulty difficulty = initilalizer.Difficulty.getDifficulty();
-        Random numberOfFruits=new Random();
-        Random interval=new Random();
-        int random=0;
-        int fruitcount=0;
+        Difficulty difficulty = initilalizer.Difficulty.getDifficulty();
+        Player player = Player.getPlayer();
+        Random numberOfFruits = new Random();
+        Random interval = new Random();
+        int random = 0;
+        int fruitCount = 0;
 
-        while(true){
-            random=numberOfFruits.nextInt(6)+3;
-            fruitcount+=random;
-            System.out.println("fruits created:"+fruitcount);
-            for (int i = 0; i <random ; i++) {
-            fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
-            handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
-            mp3Player.play();
-            try {
-                Thread.sleep(100+interval.nextInt(400));
-            }catch(InterruptedException e){
-                System.out.println("Ali");
+        while (true) {
+            random = numberOfFruits.nextInt(4);
+            if (random < 3)
+                random += random + 2;
+            fruitCount += random;
+            //   System.out.println("fruits created:" + fruitCount);
+            for (int i = 0; i < random; i++) {
+                fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
+                handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
+                mp3Player.play();
+                try {
+                    Thread.sleep(difficulty.getTimeBetweenLoops() + interval.nextInt(500 - difficulty.getTimeBetweenLoops()));
+                } catch (InterruptedException e) {
+                    // System.out.println("Ali");
+                }
             }
+            while (!handler.listOfObjects.isEmpty()) handler.removeOutOfBoundObjects();
         }
-            while(!handler.listOfObjects.isEmpty())handler.removeOutOfBoundObjects();
-        }
-
-    }
-    public void initObjects(){
 
     }
 
@@ -87,6 +97,7 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
         int frames = 0;
         while (running) {
             long now = System.nanoTime();
+            // System.out.println(now);
             delta += (now - lastTime) / tick_time_in_nanoseconds;
             lastTime = now;
             while (delta >= 1) {
@@ -94,8 +105,11 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
 
                 delta--;
             }
-            if (running)
+            if (running) {
                 render();
+                this.addMouseListener(new Slicing());
+                window.addMouseListener(new Slicing());
+            }
             frames++;
 
             if (System.currentTimeMillis() - timer > 1000) {

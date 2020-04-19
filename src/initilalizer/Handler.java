@@ -1,6 +1,7 @@
 package initilalizer;
 
 import gameObject.GameObject;
+import main.Player;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -42,10 +43,13 @@ public class Handler {
     }
 
     public void removeOutOfBoundObjects() {
-            for (int i = 0; i < listOfObjects.size(); i++) {
+        Player player = Player.getPlayer();
+        for (int i = 0; i < listOfObjects.size(); i++) {
                if (listOfObjects.get(i).getYCoordinate() >= GameLoop.HEIGHT ) {
                    listOfObjects.remove(i);
-                   System.out.println("deleted:" + (++deletedFruits));
+                   player.setLife(player.getLife()-1);
+
+                  // System.out.println("deleted:" + (++deletedFruits));
                    missedFruits++;
                    if(missedFruits==3)
                        System.out.println("GAME OVER");
