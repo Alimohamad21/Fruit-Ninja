@@ -11,7 +11,7 @@ import java.awt.MouseInfo;
 import java.awt.event.MouseListener;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import org.eclipse.swt.widgets.Display;
+//import org.eclipse.swt.widgets.Display;
 
 import initilalizer.Slicing;
 import initilalizer.Window;
@@ -43,8 +43,8 @@ public class Apple extends Fruit {
             System.out.println("Apple rendering failed");
         }
         graphics.drawImage(img1, (int) xCoordinate, (int) yCoordinate, null);
-        xloc=getCursorLocation();
-        //xloc=MouseInfo.getPointerInfo().getLocation().x;
+       // xloc=getCursorLocation();
+        xloc=MouseInfo.getPointerInfo().getLocation().x;
         yloc= MouseInfo.getPointerInfo().getLocation().y;
         if((xloc>xCoordinate-1 && xloc<xCoordinate+1)&&(yloc>yCoordinate-2 && yloc<yCoordinate+2)) {
         	System.out.println("mizogedan");
