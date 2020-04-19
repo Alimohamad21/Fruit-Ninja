@@ -32,9 +32,9 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
 
     public GameLoop() {
         handler = new Handler();
-        this.addMouseListener(new Slicing());
+       this.addMouseListener(new Slicing());
         window = new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
-        window.addMouseListener(new Slicing());
+       // window.addMouseListener(new Slicing());
     }
 
     public void initObjects() {
@@ -55,7 +55,7 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
             random = numberOfFruits.nextInt(4);
             if (random < 3)
                 random += random + 2;
-            fruitCount += random;
+                fruitCount += random;
             //   System.out.println("fruits created:" + fruitCount);
             for (int i = 0; i < random; i++) {
                 fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
@@ -76,7 +76,6 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
         thread = new Thread(this);
         thread.start();
         running = true;
-
     }
 
     public synchronized void stop() {
@@ -107,8 +106,8 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
             }
             if (running) {
                 render();
-                this.addMouseListener(new Slicing());
-                window.addMouseListener(new Slicing());
+               // this.addMouseListener(new Slicing());
+              //  window.addMouseListener(new Slicing());
             }
             frames++;
 
@@ -135,7 +134,7 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
         try {
             img1 = ImageIO.read(this.getClass().getResource("background.jpg"));
         } catch (IOException exc) {
-            System.out.println("Background ");
+            System.out.println("Background");
         }
         graphics.drawImage(img1, 0, 0, null);
 

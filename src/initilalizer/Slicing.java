@@ -15,7 +15,6 @@ public class Slicing implements MouseListener {
 
     public void mouseEntered(MouseEvent e) {
         System.out.println("hii");
-
     }
 
     public void mouseExited(MouseEvent e) {

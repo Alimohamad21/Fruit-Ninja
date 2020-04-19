@@ -47,9 +47,9 @@ public abstract class Fruit extends GameObject {
     }
 
     public void render(Graphics graphics) {
-        //graphics.setColor(Color.white);
-        //graphics.fillRect(xCoordinate, yCoordinate, 32, 32);
-        //graphics.fillRoundRect(xCoordinate, yCoordinate, 32, 32, 32, 32);
+        graphics.setColor(Color.white);
+        graphics.fillRect((int)xCoordinate, (int)yCoordinate, 32, 32);
+        graphics.fillRoundRect((int)xCoordinate, (int)yCoordinate, 32, 32, 32, 32);
     }
 
 }
