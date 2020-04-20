@@ -14,7 +14,9 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import factories.BombFactory;
 import factories.FruitFactory;
+import gameObject.bombs.BombsTypes;
 import gameObject.fruits.fruitTypes;
 import jaco.mp3.player.MP3Player;
 import main.Player;
@@ -32,7 +34,7 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
 
     public GameLoop() {
         handler = new Handler();
-       this.addMouseListener(new Slicing());
+       //this.addMouseListener(new Slicing());
         window = new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
        // window.addMouseListener(new Slicing());
     }
@@ -43,23 +45,28 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
         MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
         mp3Player1.setRepeat(true);
         mp3Player1.play();
-        FruitFactory factory = new FruitFactory();
+        FruitFactory factory1 = new FruitFactory();
+        BombFactory factory2 = new BombFactory();
         Difficulty difficulty = initilalizer.Difficulty.getDifficulty();
         Player player = Player.getPlayer();
-        Random numberOfFruits = new Random();
+        Random numberOfObjects = new Random();
         Random interval = new Random();
         int random = 0;
         int fruitCount = 0;
 
         while (true) {
-            random = numberOfFruits.nextInt(4);
+            random = numberOfObjects.nextInt(6);
             if (random < 3)
-                random += random + 2;
-                fruitCount += random;
+                random += 1;
             //   System.out.println("fruits created:" + fruitCount);
             for (int i = 0; i < random; i++) {
                 fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
-                handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
+                BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
+                if(random<4) {
+                handler.addObject(factory1.create(fruitTypes.randomFruitTypes()));
+                fruitCount += random;}else{
+                handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
+                random--;}
                 mp3Player.play();
                 try {
                     Thread.sleep(difficulty.getTimeBetweenLoops() + interval.nextInt(500 - difficulty.getTimeBetweenLoops()));

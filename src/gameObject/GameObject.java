@@ -12,12 +12,12 @@ public abstract class GameObject {
     protected boolean sliced;
     protected int points;
 
-    protected enum ObjectType {
+    public enum ObjectType {
         fruit,
         bomb;
     }
 
-    protected ObjectType objectType;
+    public ObjectType objectType;
 
     public GameObject(){};
     public GameObject(int xCoordinate, int yCoordinate) {

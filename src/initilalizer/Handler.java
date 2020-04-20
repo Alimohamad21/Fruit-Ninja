@@ -1,6 +1,9 @@
 package initilalizer;
 
 import gameObject.GameObject;
+import gameObject.GameObject.ObjectType;
+import gameObject.fruits.Fruit;
+import gameObject.fruits.fruitTypes;
 import main.Player;
 
 import java.awt.Graphics;
@@ -46,13 +49,13 @@ public class Handler {
         Player player = Player.getPlayer();
         for (int i = 0; i < listOfObjects.size(); i++) {
                if (listOfObjects.get(i).getYCoordinate() >= GameLoop.HEIGHT ) {
-                   listOfObjects.remove(i);
+                   if(listOfObjects.get(i).getObjectType().equals(ObjectType.fruit));{
                    player.setLife(player.getLife()-1);
-
-                  // System.out.println("deleted:" + (++deletedFruits));
                    missedFruits++;
-                   if(missedFruits==3)
-                       System.out.println("GAME OVER");
+                   if(missedFruits==3) {
+                       System.out.println("GAME OVER");}
+                       System.out.println(listOfObjects.get(i).getObjectType());}
+                   listOfObjects.remove(i);
                }
 
             }

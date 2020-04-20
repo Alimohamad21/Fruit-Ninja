@@ -20,10 +20,6 @@ public class Apple extends Fruit {
 	//Window window;
     public Apple() {
     };
-	/*String filePath = new File("/project3/fruitimgs/apple.png").getAbsolutePath();
-	File file=new File(filePath);*/
-    //Image img1= new ImageIcon(this.getClass().getResource("apple.png")).getImage();
-
     public Apple(int x, int y) {
         super(x, y);
         objectLife = 1;

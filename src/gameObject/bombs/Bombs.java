@@ -1,15 +1,14 @@
-package gameObject.fruits;
-
-import gameObject.GameObject;
-import initilalizer.GameLoop;
+package gameObject.bombs;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
-public abstract class Fruit extends GameObject {
+import gameObject.GameObject;
+import initilalizer.GameLoop;
 
-    protected ObjectType objectType = ObjectType.fruit;
+public abstract class Bombs extends GameObject {
+	protected ObjectType objectType = ObjectType.bomb;
     private boolean flag = false;
 
     @Override
@@ -17,21 +16,19 @@ public abstract class Fruit extends GameObject {
         return objectType;
     }
 
-
-    public Fruit() {
-    }
-
-    ;
-
-    public Fruit(int x, int y) {
-       super(x, y);
+    public Bombs() {
+    	
+    };
+    
+    public Bombs(int x, int y) {
+        super(x, y);
         Random randomDirection=new Random();
-     if(xCoordinate<200)
-     velocityX=1.5;
-     else if(xCoordinate>300)
+        if(xCoordinate<200)
+        velocityX=1.5;
+        else if(xCoordinate>300)
          velocityX=-1.5;
-     else
-     {velocityX = -2+randomDirection.nextInt(5);}
+        else
+       {velocityX = -2+randomDirection.nextInt(5);}
         velocityY =8;
     }
 
@@ -47,9 +44,8 @@ public abstract class Fruit extends GameObject {
     }
 
     public void render(Graphics graphics) {
-       /* graphics.setColor(Color.white);
+        /*graphics.setColor(Color.white);
         graphics.fillRect((int)xCoordinate, (int)yCoordinate, 32, 32);
         graphics.fillRoundRect((int)xCoordinate, (int)yCoordinate, 32, 32, 32, 32);*/
     }
-
 }
