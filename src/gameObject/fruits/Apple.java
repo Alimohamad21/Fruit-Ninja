@@ -11,13 +11,10 @@ import java.awt.MouseInfo;
 import java.awt.event.MouseListener;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-//import org.eclipse.swt.widgets.Display;
-
-import initilalizer.Slicing;
 import initilalizer.Window;
 
 public class Apple extends Fruit {
-	//Window window;
+	private BufferedImage img1 = null;
     public Apple() {
     };
     public Apple(int x, int y) {
@@ -30,23 +27,25 @@ public class Apple extends Fruit {
     }
 
     public void render(Graphics graphics) {
-    	//window.addMouseListener(new Slicing());
-    	double xloc,yloc;
-        BufferedImage img1 = null;
-        try {
-            img1 = ImageIO.read(this.getClass().getResource("apple.png"));
-        } catch (IOException exc) {
-            System.out.println("Apple rendering failed");
-        }
-        graphics.drawImage(img1, (int) xCoordinate, (int) yCoordinate, null);
-       // xloc=getCursorLocation();
-        xloc=MouseInfo.getPointerInfo().getLocation().x;
-        yloc= MouseInfo.getPointerInfo().getLocation().y;
-        if((xloc>xCoordinate-1 && xloc<xCoordinate+1)&&(yloc>yCoordinate-2 && yloc<yCoordinate+2)) {
-        	System.out.println("mizogedan");
-        }
-
+    	if(!sliced) {
+    		try
+    		{
+    			img1 = ImageIO.read(this.getClass().getResource("apple.png"));
+    			setImg(img1);
+    		}
+    		catch ( IOException exc )
+    		{
+    		    System.out.println("apple rendering failed");
+    		}}else {
+    			try
+    			{
+    				img1 = ImageIO.read(this.getClass().getResource("apple-2.png"));
+    				setImg(img1);
+    			}
+    			catch ( IOException exc )
+    			{
+    			    System.out.println("Sliced apple rendering failed");
+        }}
+        	graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
     }
-
-
-}
+    }

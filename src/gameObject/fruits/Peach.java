@@ -13,10 +13,6 @@ public class Peach extends Fruit {
 
     public Peach() {};
     private BufferedImage img1 = null;
-	/*String filePath = new File("/project3/fruitimgs/peach.png").getAbsolutePath();
-	File file=new File(filePath);*/
-	//Image img1= new ImageIcon(this.getClass().getResource("peach.png")).getImage();
-
     public Peach(int x, int y) {
         super(x, y);
         objectLife = 1;
@@ -26,14 +22,25 @@ public class Peach extends Fruit {
         points = objectLife * 10;
     }
     public void render(Graphics graphics) {
-		try
-		{
-		    img1 = ImageIO.read(this.getClass().getResource("peach.png"));
-		}
-		catch ( IOException exc )
-		{
-		    System.out.println("Peach rendering failed");
-		}
-		graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
+    	if(!sliced) {
+    		try
+    		{
+    			img1 = ImageIO.read(this.getClass().getResource("peach.png"));
+    			setImg(img1);
+    		}
+    		catch ( IOException exc )
+    		{
+    		    System.out.println("Peach rendering failed");
+    		}}else {
+    			try
+    			{
+    				img1 = ImageIO.read(this.getClass().getResource("peach-2.png"));
+    				setImg(img1);
+    			}
+    			catch ( IOException exc )
+    			{
+    			    System.out.println("Sliced peach rendering failed");
+        }}
+        	graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
     }
 }

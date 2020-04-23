@@ -13,12 +13,7 @@ public class Banana extends Fruit {
 
     public Banana() {};
     private BufferedImage img1 = null;
-	/*String filePath = new File("/project3/fruitimgs/banana.png").getAbsolutePath();
-	File file=new File(filePath);*/
-	//Image img1= new ImageIcon(this.getClass().getResource("banana.png")).getImage();
-	//lblNewLabel_1.setIcon(new ImageIcon(img1));
-
-    public Banana(int x, int y) {
+	public Banana(int x, int y) {
         super(x, y);
         objectLife = 1;
         sliced = false;
@@ -27,14 +22,25 @@ public class Banana extends Fruit {
         points = objectLife * 10;
     }
     public void render(Graphics graphics) {
+    	if(!sliced) {
 		try
 		{
 			img1 = ImageIO.read(this.getClass().getResource("banana.png"));
+			setImg(img1);
 		}
 		catch ( IOException exc )
 		{
 		    System.out.println("Banana rendering failed");
-		}
-		graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
-    }
+		}}else {
+			try
+			{
+				img1 = ImageIO.read(this.getClass().getResource("banana-2.png"));
+				setImg(img1);
+			}
+			catch ( IOException exc )
+			{
+			    System.out.println("Sliced banana rendering failed");
+    }}
+    	graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
+}
 }

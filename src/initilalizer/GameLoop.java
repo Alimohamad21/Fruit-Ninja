@@ -34,9 +34,7 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
 
     public GameLoop() {
         handler = new Handler();
-       //this.addMouseListener(new Slicing());
         window = new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
-       // window.addMouseListener(new Slicing());
     }
 
     public void initObjects() {
@@ -58,7 +56,6 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
             random = numberOfObjects.nextInt(6);
             if (random < 3)
                 random += 1;
-            //   System.out.println("fruits created:" + fruitCount);
             for (int i = 0; i < random; i++) {
                 fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
                 BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
@@ -144,11 +141,8 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
             System.out.println("Background");
         }
         graphics.drawImage(img1, 0, 0, null);
-
         handler.render(graphics);
         graphics.dispose();
         bufferSt.show();
     }
-
-
 }

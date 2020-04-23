@@ -14,9 +14,7 @@ import java.util.List;
 import static initilalizer.GameLoop.HEIGHT;
 
 public class Handler {
-    //LinkedList<GameObject> listOfObjects=new LinkedList<GameObject>();
     List<GameObject> listOfObjects;
-    private int deletedFruits=0;
     private int missedFruits=0;
 
 
@@ -49,7 +47,7 @@ public class Handler {
         Player player = Player.getPlayer();
         for (int i = 0; i < listOfObjects.size(); i++) {
                if (listOfObjects.get(i).getYCoordinate() >= GameLoop.HEIGHT ) {
-                   if(listOfObjects.get(i).getObjectType().equals(ObjectType.fruit));{
+                   if(listOfObjects.get(i).getObjectType().equals(ObjectType.fruit)){
                    player.setLife(player.getLife()-1);
                    missedFruits++;
                    if(missedFruits==3) {

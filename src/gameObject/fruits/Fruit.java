@@ -2,21 +2,25 @@ package gameObject.fruits;
 
 import gameObject.GameObject;
 import initilalizer.GameLoop;
+import initilalizer.Mouse;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.Random;
+
+import com.sun.glass.events.MouseEvent;
 
 public abstract class Fruit extends GameObject {
 
     protected ObjectType objectType = ObjectType.fruit;
     private boolean flag = false;
+    private BufferedImage img = null;
 
     @Override
     public ObjectType getObjectType() {
         return objectType;
     }
-
 
     public Fruit() {
     }
@@ -34,8 +38,7 @@ public abstract class Fruit extends GameObject {
      {velocityX = -2+randomDirection.nextInt(5);}
         velocityY =8;
     }
-
-    public void tick() {
+	public void tick() {
         xCoordinate+=velocityX;
         yCoordinate -= velocityY;
         Random maxHeight=new Random();
@@ -46,10 +49,6 @@ public abstract class Fruit extends GameObject {
         }
     }
 
-    public void render(Graphics graphics) {
-       /* graphics.setColor(Color.white);
-        graphics.fillRect((int)xCoordinate, (int)yCoordinate, 32, 32);
-        graphics.fillRoundRect((int)xCoordinate, (int)yCoordinate, 32, 32, 32, 32);*/
-    }
+    public void render(Graphics graphics) {}
 
 }

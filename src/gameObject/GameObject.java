@@ -1,6 +1,7 @@
 package gameObject;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 public abstract class GameObject {
     protected double xCoordinate, yCoordinate;
@@ -11,8 +12,9 @@ public abstract class GameObject {
     protected int ascendingVelocity;
     protected boolean sliced;
     protected int points;
+    private BufferedImage img;
 
-    public enum ObjectType {
+	public enum ObjectType {
         fruit,
         bomb;
     }
@@ -33,6 +35,12 @@ public abstract class GameObject {
      * Getters & Setters
      **/
 
+    public BufferedImage getImg() {
+		return img;
+	}
+	public void setImg(BufferedImage img) {
+		this.img = img;
+	}
     public double getXCoordinate() {
         return xCoordinate;
     }

@@ -13,10 +13,6 @@ public class Watermelon extends Fruit {
 
     public Watermelon() {};
     private BufferedImage img1 = null;
-	/*String filePath = new File("/project3/fruitimgs/sandia.png").getAbsolutePath();
-	File file=new File(filePath);*/
-	//Image img1= new ImageIcon(this.getClass().getResource("sandia.png")).getImage();
-
     public Watermelon(int x, int y) {
         super(x, y);
         objectLife = 1;
@@ -26,14 +22,25 @@ public class Watermelon extends Fruit {
         points = objectLife * 10;
     }
     public void render(Graphics graphics) {
-		try
-		{
-		    img1 = ImageIO.read(this.getClass().getResource("sandia.png"));
-		}
-		catch ( IOException exc )
-		{
-		    System.out.println("Watermelon rendering failed");
-		}
-		graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
+    	if(!sliced) {
+    		try
+    		{
+    			img1 = ImageIO.read(this.getClass().getResource("sandia.png"));
+    			setImg(img1);
+    		}
+    		catch ( IOException exc )
+    		{
+    		    System.out.println("Watermelon rendering failed");
+    		}}else {
+    			try
+    			{
+    				img1 = ImageIO.read(this.getClass().getResource("sandia-2.png"));
+    				setImg(img1);
+    			}
+    			catch ( IOException exc )
+    			{
+    			    System.out.println("Sliced watermelon rendering failed");
+        }}
+        	graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
     }
 }

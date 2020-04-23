@@ -13,10 +13,6 @@ public class Strawberry extends Fruit {
 
     public Strawberry() {};
     private BufferedImage img1 = null;
-	/*String filePath = new File("/project3/fruitimgs/basaha.png").getAbsolutePath();
-	File file=new File(filePath);*/
-	//Image img1= new ImageIcon(this.getClass().getResource("basaha.png")).getImage();
-
     public Strawberry(int x, int y) {
         super(x, y);
         objectLife = 1;
@@ -26,14 +22,25 @@ public class Strawberry extends Fruit {
         points = objectLife * 10;
     }
     public void render(Graphics graphics) {
-		try
-		{
-		    img1 = ImageIO.read(this.getClass().getResource("basaha.png"));
-		}
-		catch ( IOException exc )
-		{
-		    System.out.println("Strawberry rendering failed");
-		}
-		graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
+    	if(!sliced) {
+    		try
+    		{
+    			img1 = ImageIO.read(this.getClass().getResource("basaha.png"));
+    			setImg(img1);
+    		}
+    		catch ( IOException exc )
+    		{
+    		    System.out.println("Strawberry rendering failed");
+    		}}else {
+    			try
+    			{
+    				img1 = ImageIO.read(this.getClass().getResource("basaha-2.png"));
+    				setImg(img1);
+    			}
+    			catch ( IOException exc )
+    			{
+    			    System.out.println("Sliced strawberry rendering failed");
+        }}
+        	graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
     }
 }
