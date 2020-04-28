@@ -7,10 +7,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
-public class Window extends Canvas {
+public class Window extends JPanel {
 
 	private static final long serialVersionUID = -6374877296636020057L;
 
@@ -25,7 +24,6 @@ public class Window extends Canvas {
 		frame.add(game);
 		frame.setVisible(true);
 		game.start();
-		Mouse m = new Mouse(this);
-		addMouseMotionListener(m);
+
 	}
 }

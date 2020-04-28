@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
 import factories.BombFactory;
 import factories.FruitFactory;
@@ -35,9 +36,11 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     public GameLoop() {
         handler = new Handler();
         window = new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
+        //window.pleaseWork();
     }
 
     public void initObjects() {
+
         int count = 0;
         MP3Player mp3Player = new MP3Player(new File("throw.mp3"));
         MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
@@ -77,6 +80,12 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     }
 
     public synchronized void start() {
+
+        try {
+            img1 = ImageIO.read(this.getClass().getResource("background.jpg"));
+        } catch (IOException exc) {
+            System.out.println("Background");
+        }
         thread = new Thread(this);
         thread.start();
         running = true;
@@ -129,17 +138,14 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     }
 
     public void render() {
+        Mouse mouse=new Mouse();
+        addMouseMotionListener(mouse);
         BufferStrategy bufferSt = this.getBufferStrategy();
         if (bufferSt == null) {
             this.createBufferStrategy(3);
             return;
         }
         Graphics graphics = bufferSt.getDrawGraphics();
-        try {
-            img1 = ImageIO.read(this.getClass().getResource("background.jpg"));
-        } catch (IOException exc) {
-            System.out.println("Background");
-        }
         graphics.drawImage(img1, 0, 0, null);
         handler.render(graphics);
         graphics.dispose();

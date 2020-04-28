@@ -14,7 +14,7 @@ public class Context {
 
     public void starter() {
         if (difficulty.equalsIgnoreCase("Easy")) {
-
+            difficulties=new GameLoop();
         } else if (difficulty.equalsIgnoreCase("Normal")) {
             difficulties = new GameLoop();
         } else if (difficulty.equalsIgnoreCase("Hard")) {

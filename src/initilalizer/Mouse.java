@@ -1,17 +1,20 @@
 package initilalizer;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
 import gameObject.GameObject;
 
+import javax.swing.*;
+
 
 public class Mouse implements MouseMotionListener {
  
 	List<GameObject> listOfObjects;
-	Window window;
-	public Mouse(Window w) {
-        this.window = w;
+	Canvas window;
+	public Mouse() {
+       // this.window = w;
     }
 	
 	@Override
@@ -19,8 +22,8 @@ public class Mouse implements MouseMotionListener {
 		int x=e.getX();
 		int y=e.getY();
 		int i;
-		System.out.println("mizo1");
-		for(i=0;i<listOfObjects.size();i++) {
+		System.out.println("mouse dragging");
+		/*for(i=0;i<listOfObjects.size();i++) {
 			GameObject object = listOfObjects.get(i);
 			if(x>=object.getXCoordinate() && x<=object.getXCoordinate() + object.getImg().getWidth()) {
 				System.out.println("mizo3");
@@ -31,10 +34,11 @@ public class Mouse implements MouseMotionListener {
 					}
 				}
 			}
-		}
+		}*/
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent e) {		
+	public void mouseMoved(MouseEvent e) {
+		System.out.println("mouse is released");
 	}   
 }

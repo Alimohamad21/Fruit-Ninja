@@ -31,7 +31,7 @@ public class FirstDisplay extends JFrame {
      * Launch the application.
      */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
+       /*EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     FirstDisplay frame = new FirstDisplay();
@@ -41,7 +41,10 @@ public class FirstDisplay extends JFrame {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
+
+       GameLoop gameActions = new GameLoop();
+        gameActions.initObjects();
     }
 
     /**
@@ -57,18 +60,19 @@ public class FirstDisplay extends JFrame {
         hard = new JLabel();
         background = new JLabel();
 
+
     }
 
     public void initFirstDisplay() {
         Difficulty Difficulty = initilalizer.Difficulty.getDifficulty();
-
+        Mouse m = new Mouse();
+        addMouseMotionListener(m);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(550, 200, 700, 400);
         frame.setBackground(Color.WHITE);
         frame.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(frame);
         frame.setLayout(null);
-
         textField.setBounds(229, 204, 202, 42);
         frame.add(textField);
         textField.setColumns(10);
@@ -87,7 +91,7 @@ public class FirstDisplay extends JFrame {
         proceed.setBounds(500, 276, 144, 51);
         frame.add(proceed);
 
-        Image img1 = new ImageIcon(this.getClass().getResource("easy.png")).getImage();
+       Image img1 = new ImageIcon(this.getClass().getResource("easy.png")).getImage();
         easy.setIcon(new ImageIcon(img1));
         easy.setBounds(64, 47, 120, 119);
         frame.add(easy);
@@ -97,7 +101,6 @@ public class FirstDisplay extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 //  co.setDifficulty("Normal");
                 Difficulty.setNormalDifficulty();
-
             }
         });
         medium.setBounds(267, 25, 120, 119);
