@@ -10,19 +10,23 @@ import javax.swing.*;
 
 
 public class Mouse implements MouseMotionListener {
+
  
 	List<GameObject> listOfObjects;
 	Canvas window;
+	static int x,y;
 	public Mouse() {
        // this.window = w;
     }
+
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		int x=e.getX();
-		int y=e.getY();
+
 		int i;
-		System.out.println("mouse dragging");
+		//System.out.println("mouse dragging");
+		x=e.getX();
+		y=e.getY();
 		/*for(i=0;i<listOfObjects.size();i++) {
 			GameObject object = listOfObjects.get(i);
 			if(x>=object.getXCoordinate() && x<=object.getXCoordinate() + object.getImg().getWidth()) {
@@ -39,6 +43,7 @@ public class Mouse implements MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("mouse is released");
+		//System.out.println("mouse is released");
+		x=y=0;
 	}   
 }

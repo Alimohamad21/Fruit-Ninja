@@ -17,6 +17,7 @@ import javax.swing.*;
 
 import factories.BombFactory;
 import factories.FruitFactory;
+import gameObject.GameObject;
 import gameObject.bombs.BombsTypes;
 import gameObject.fruits.fruitTypes;
 import jaco.mp3.player.MP3Player;
@@ -36,7 +37,7 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     public GameLoop() {
         handler = new Handler();
         window = new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
-        //window.pleaseWork();
+
     }
 
     public void initObjects() {
@@ -138,8 +139,28 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     }
 
     public void render() {
-        Mouse mouse=new Mouse();
-        addMouseMotionListener(mouse);
+       try {
+           Mouse mouse = new Mouse();
+           addMouseMotionListener(mouse);
+           MP3Player splash=new MP3Player(new File("splatter.mp3"));
+           int i;
+           for (i = 0; i < handler.listOfObjects.size(); i++) {
+               GameObject object = handler.listOfObjects.get(i);
+              /* System.out.println("object{" + i + "}:" + object.getYCoordinate() + "," + object.getYCoordinate());
+               System.out.println("mouse:" + mouse.x + "," + mouse.y);*/
+               if (mouse.x >= object.getXCoordinate() && mouse.x <= object.getXCoordinate() + object.getImg().getWidth()) {
+                   if (mouse.y >= object.getYCoordinate() && mouse.y <= object.getYCoordinate() + object.getImg().getHeight()) {
+                       if (!object.isSliced()) {
+                           object.setSliced(true);
+                           System.out.println("SLICED");
+                           splash.play();
+                       }
+                   }
+               }
+           }
+       }catch (Exception e){
+
+       }
         BufferStrategy bufferSt = this.getBufferStrategy();
         if (bufferSt == null) {
             this.createBufferStrategy(3);
