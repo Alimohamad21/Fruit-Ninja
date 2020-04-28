@@ -42,7 +42,6 @@ public class FirstDisplay extends JFrame {
                 }
             }
         });*/
-
        GameLoop gameActions = new GameLoop();
         gameActions.initObjects();
     }

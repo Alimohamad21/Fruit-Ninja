@@ -159,7 +159,6 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
                    if (mouse.y >= object.getYCoordinate() && mouse.y <= object.getYCoordinate() + object.getImg().getHeight()) {
                        if (!object.isSliced()) {
                            object.setSliced(true);
-                           System.out.println("SLICED");
                            splash.play();
                        }
                    }

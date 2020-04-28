@@ -16,8 +16,7 @@ import static initilalizer.GameLoop.HEIGHT;
 public class Handler {
     List<GameObject> listOfObjects;
     private int missedFruits=0;
-
-
+    Mouse mouse=new Mouse();
     public Handler() {
         this.listOfObjects = new ArrayList<>();
     }
@@ -35,6 +34,7 @@ public class Handler {
 		for (int i = 0; i < listOfObjects.size(); i++) {
             GameObject object = listOfObjects.get(i);
             object.render(graphics);
+            mouse.render(graphics);
         }
 
     }

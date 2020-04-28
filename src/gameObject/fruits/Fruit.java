@@ -49,6 +49,6 @@ public abstract class Fruit extends GameObject {
         }
     }
 
-    public void render(Graphics graphics) {}
+   abstract public void render(Graphics graphics);
 
 }
