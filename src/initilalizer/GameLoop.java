@@ -45,6 +45,7 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
         int count = 0;
         MP3Player mp3Player = new MP3Player(new File("throw.mp3"));
         MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
+        MP3Player bombSound=new MP3Player(new File("Fuse.mp3"));
         mp3Player1.setRepeat(true);
         mp3Player1.play();
         FruitFactory factory1 = new FruitFactory();
@@ -53,24 +54,30 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
         Player player = Player.getPlayer();
         Random numberOfObjects = new Random();
         Random interval = new Random();
-        int random = 0;
+        FruitFactory factory = new FruitFactory();
+        Random numberOfFruits = new Random();
+        int random ;
         int fruitCount = 0;
-
         while (true) {
-            random = numberOfObjects.nextInt(6);
-            if (random < 3)
-                random += 1;
+            random = 2+numberOfFruits.nextInt(4);
+            boolean bombCreated=false;
+            Random bombs=new Random();
+            fruitCount += random;
+            int noOfBombs=bombs.nextInt(3);
             for (int i = 0; i < random; i++) {
                 fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
                 BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
-                if(random<4) {
-                handler.addObject(factory1.create(fruitTypes.randomFruitTypes()));
-                fruitCount += random;}else{
-                handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
-                random--;}
+                handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
                 mp3Player.play();
                 try {
+
+                    if(noOfBombs==1 && !bombCreated) {
+                        handler.addObject(factory2.create("fatal"));// randomize el type lamma ne3mel el tanya
+                        bombSound.play();
+                        bombCreated=true;
+                    }
                     Thread.sleep(difficulty.getTimeBetweenLoops() + interval.nextInt(500 - difficulty.getTimeBetweenLoops()));
+
                 } catch (InterruptedException e) {
                     // System.out.println("Ali");
                 }
