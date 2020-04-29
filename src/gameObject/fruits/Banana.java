@@ -13,6 +13,7 @@ public class Banana extends Fruit {
 
     public Banana() {};
     private BufferedImage img1 = null;
+    private BufferedImage img2 = null;
 	public Banana(int x, int y) {
         super(x, y);
         objectLife = 1;
@@ -35,6 +36,7 @@ public class Banana extends Fruit {
 			try
 			{
 				img1 = ImageIO.read(this.getClass().getResource("banana-2.png"));
+				img2 = ImageIO.read(this.getClass().getResource("banana-1.png"));
 				setImg(img1);
 			}
 			catch ( IOException exc )
@@ -42,5 +44,6 @@ public class Banana extends Fruit {
 			    System.out.println("Sliced banana rendering failed");
     }}
     	graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
+    	graphics.drawImage(img2, (int)(xCoordinate+30),(int)yCoordinate, null);
 }
 }

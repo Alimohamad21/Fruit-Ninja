@@ -1,11 +1,9 @@
 package initilalizer;
 
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,7 +11,6 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
 import factories.BombFactory;
 import factories.FruitFactory;
@@ -32,7 +29,9 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     private boolean running = false;
     private Handler handler;
     private BufferedImage img1;
+    private Player player= Player.getPlayer();
     Window window;
+    private final long startTime=System.currentTimeMillis();
 
     public GameLoop() {
         handler = new Handler();
@@ -51,7 +50,6 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
         FruitFactory factory1 = new FruitFactory();
         BombFactory factory2 = new BombFactory();
         Difficulty difficulty = initilalizer.Difficulty.getDifficulty();
-        Player player = Player.getPlayer();
         Random numberOfObjects = new Random();
         Random interval = new Random();
         FruitFactory factory = new FruitFactory();
@@ -146,20 +144,30 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
     }
 
     public void render() {
-       try {
+           try {
            Mouse mouse = new Mouse();
+           
            addMouseMotionListener(mouse);
            MP3Player splash=new MP3Player(new File("splatter.mp3"));
            int i;
            for (i = 0; i < handler.listOfObjects.size(); i++) {
                GameObject object = handler.listOfObjects.get(i);
-              /* System.out.println("object{" + i + "}:" + object.getYCoordinate() + "," + object.getYCoordinate());
-               System.out.println("mouse:" + mouse.x + "," + mouse.y);*/
+               /*if(String.valueOf(object.getObjectType())=="bomb") {System.out.println("tab mizak");
+    		   
+               System.out.println("object{" + i + "}:" + object.getXCoordinate() + "," + object.getYCoordinate());
+               System.out.println("mouse:" + mouse.x + "," + mouse.y);}*/
                if (mouse.x >= object.getXCoordinate() && mouse.x <= object.getXCoordinate() + object.getImg().getWidth()) {
                    if (mouse.y >= object.getYCoordinate() && mouse.y <= object.getYCoordinate() + object.getImg().getHeight()) {
                        if (!object.isSliced()) {
+                    	   if(String.valueOf(object.getObjectType())=="fruit") {
+                    	   player.setPoints(player.getPoints()+1);
                            object.setSliced(true);
                            splash.play();
+                    	   }
+                    	   else {
+                    		   player.setLife(player.getLife()-1);
+                    		   object.setSliced(true);
+                    		   }
                        }
                    }
                }
@@ -172,8 +180,25 @@ public class GameLoop extends Canvas implements Runnable, IMainGameActions {
             this.createBufferStrategy(3);
             return;
         }
+        BufferedImage melonback =null;
         Graphics graphics = bufferSt.getDrawGraphics();
+        long currentTime=System.currentTimeMillis();
+        int runtime=(int)((currentTime-startTime)/1000);
         graphics.drawImage(img1, 0, 0, null);
+        
+        
+        ///// HENA YA LOLOO
+        /*try {
+            melonback=ImageIO.read(this.getClass().getResource("sandia-1.png"));
+            graphics.drawImage(melonback,0,0,null);
+        } catch (IOException exc) {
+            System.out.println("melon background");
+        }*/
+        graphics.setFont(new Font("Tahoma",Font.ITALIC,24));
+        graphics.setColor(Color.YELLOW);
+        if(runtime<=9) {graphics.drawString("0:0"+String.valueOf(runtime), 550, 30);}
+        else {graphics.drawString("0:"+String.valueOf(runtime), 550, 30);}
+        graphics.drawString("Points:"+String.valueOf(player.getPoints()),20, 30);
         handler.render(graphics);
         graphics.dispose();
         bufferSt.show();

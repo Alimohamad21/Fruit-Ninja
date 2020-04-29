@@ -20,6 +20,7 @@ public class Fatal extends Bombs{
 			try
 			{
 				img1 = ImageIO.read(this.getClass().getResource("boom.png"));
+				setImg(img1);
 			}
 			catch ( IOException exc )
 			{

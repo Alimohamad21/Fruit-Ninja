@@ -15,6 +15,7 @@ import initilalizer.Window;
 
 public class Apple extends Fruit {
 	private BufferedImage img1 = null;
+	private BufferedImage img2 = null;
     public Apple() {
     };
     public Apple(int x, int y) {
@@ -40,6 +41,7 @@ public class Apple extends Fruit {
     			try
     			{
     				img1 = ImageIO.read(this.getClass().getResource("apple-2.png"));
+    				img2 = ImageIO.read(this.getClass().getResource("apple-1.png"));
     				setImg(img1);
     			}
     			catch ( IOException exc )
@@ -47,5 +49,6 @@ public class Apple extends Fruit {
     			    System.out.println("Sliced apple rendering failed");
         }}
         	graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
+        	graphics.drawImage(img2, (int)(xCoordinate-50),(int)yCoordinate, null);
     }
     }
