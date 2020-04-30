@@ -43,7 +43,6 @@ public class FirstDisplay extends JFrame {
             }
         });*/
        GameLoop gameActions = new GameLoop();
-        gameActions.initObjects();
     }
 
     /**
@@ -63,7 +62,6 @@ public class FirstDisplay extends JFrame {
     }
 
     public void initFirstDisplay() {
-        Difficulty Difficulty = initilalizer.Difficulty.getDifficulty();
         Mouse m = new Mouse();
         addMouseMotionListener(m);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +83,6 @@ public class FirstDisplay extends JFrame {
         proceed.addActionListener(e -> {
             dispose();
             GameLoop gameActions = new GameLoop();
-            gameActions.initObjects();
         });
         proceed.setBounds(500, 276, 144, 51);
         frame.add(proceed);
@@ -98,8 +95,6 @@ public class FirstDisplay extends JFrame {
         medium.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //  co.setDifficulty("Normal");
-                Difficulty.setNormalDifficulty();
             }
         });
         medium.setBounds(267, 25, 120, 119);

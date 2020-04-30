@@ -4,7 +4,6 @@ import gameObject.GameObject;
 import gameObject.GameObject.ObjectType;
 import gameObject.fruits.Fruit;
 import gameObject.fruits.fruitTypes;
-import main.Player;
 
 import java.awt.Graphics;
 import java.util.ArrayList;

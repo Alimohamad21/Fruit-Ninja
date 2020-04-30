@@ -20,6 +20,25 @@ public class Mouse implements MouseMotionListener {
 	List<GameObject> listOfObjects;
 	Canvas window;
 	static int x, y;
+	public static int getX() {
+		return x;
+	}
+
+
+	public static void setX(int x) {
+		Mouse.x = x;
+	}
+
+
+	public static int getY() {
+		return y;
+	}
+
+
+	public static void setY(int y) {
+		Mouse.y = y;
+	}
+
 	private static boolean mouseDragged = false;
 	private BufferedImage img1 = null;
 
