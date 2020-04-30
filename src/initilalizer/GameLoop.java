@@ -49,6 +49,9 @@ public class GameLoop extends Canvas implements Runnable{
         } catch (IOException exc) {
             System.out.println("Background");
         }
+        MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
+		mp3Player1.setRepeat(true);
+		mp3Player1.play();
         thread = new Thread(this);
         thread.start();
         running = true;
@@ -114,8 +117,10 @@ public class GameLoop extends Canvas implements Runnable{
                            object.setSliced(true);
                            splash.play();
                     	   }
-                    	   else {                    		   
-                    		   player.setLife(player.getLife()-1);
+                    	   else {
+                    		   if(object.getObjectLife()==100) player.setLife(0);
+                    		   if(player.getLife()>0) {
+                    		   player.setLife(player.getLife()-1);}
                     		   object.setSliced(true);
                     		   }
                        }
@@ -130,8 +135,18 @@ public class GameLoop extends Canvas implements Runnable{
         }
         
         Graphics graphics = bufferSt.getDrawGraphics();
+        BufferedImage gameover=null;
         long currentTime=System.currentTimeMillis();
         graphics.drawImage(img1, 0, 0, null);
+			try
+			{
+				gameover = ImageIO.read(this.getClass().getResource("game-over.png"));
+			}
+			catch ( IOException exc )
+			{
+			    System.out.println("Game over rendering failed");
+			}
+        if(player.getLife()==0) graphics.drawImage(gameover, 50, 200, null);
         window.drawLabels(graphics,currentTime,startTime);
         handler.render(graphics);
         graphics.dispose();

@@ -11,7 +11,7 @@ public class Fatal extends Bombs{
 	    private BufferedImage img1 = null;
 	    public Fatal(int x, int y) {
 	        super(x, y);
-	        objectLife = 1;
+	        objectLife = 100;
 	        sliced = false;
 	        this.length = 2; //to be determined//
 	        this.width = 1; //to be determined//
@@ -19,7 +19,7 @@ public class Fatal extends Bombs{
 	    public void render(Graphics graphics) {
 			try
 			{
-				img1 = ImageIO.read(this.getClass().getResource("boom.png"));
+				img1 = ImageIO.read(this.getClass().getResource("dangerousbomb.png"));
 				setImg(img1);
 			}
 			catch ( IOException exc )

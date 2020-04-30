@@ -14,7 +14,6 @@ public class StarterDifficulty implements ILevel{
     private int timeBetweenLoops;
     private boolean entered=false;
     MP3Player mp3Player = new MP3Player(new File("throw.mp3"));
-    MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
     MP3Player bombSound=new MP3Player(new File("Fuse.mp3"));
     BombFactory factory2 = new BombFactory();
     Random numberOfObjects = new Random();
@@ -28,8 +27,6 @@ public class StarterDifficulty implements ILevel{
     
     @Override
     public void initObjects(Thread thread,Handler handler) {
-    mp3Player1.setRepeat(true);
-    mp3Player1.play();
     int random,i;
     int fruitCount = 0;
     fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
@@ -58,7 +55,7 @@ public class StarterDifficulty implements ILevel{
             mp3Player.play();
             try {
                 if(noOfBombs==1 && !bombCreated) {
-                    handler.addObject(factory2.create("fatal"));
+                    handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
                     bombSound.play();
                     bombCreated=true;
                 }

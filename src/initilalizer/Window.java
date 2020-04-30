@@ -43,7 +43,7 @@ public void drawLabels(Graphics graphics,long currentTime,long startTime) {
     graphics.setColor(Color.YELLOW);
     if(runtime<=9) {graphics.drawString("0:0"+String.valueOf(runtime), 550, 30);}
     else {graphics.drawString(time, 550, 30);}
-    graphics.drawString("Score:"+String.valueOf(points),20, 30);
+    graphics.drawString("Score:"+String.valueOf(points),30, 25);
 }
   
 

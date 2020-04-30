@@ -47,9 +47,11 @@ public class Handler {
         for (int i = 0; i < listOfObjects.size(); i++) {
                if (listOfObjects.get(i).getYCoordinate() >= GameLoop.HEIGHT ) {
                    if(listOfObjects.get(i).getObjectType().equals(ObjectType.fruit)) {
-                       player.setLife(player.getLife() - 1);
-                       if (!listOfObjects.get(i).isSliced())
+                	   if (!listOfObjects.get(i).isSliced()) {
+                	   if(player.getLife()>0) {
+                       player.setLife(player.getLife() - 1);}
                            missedFruits++;
+                	   }
                    }
                    if(missedFruits==3)
                        System.out.println("GAME OVER");

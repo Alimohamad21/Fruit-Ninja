@@ -18,7 +18,6 @@ public class ExpDifficulty implements ILevel{
 	    FruitFactory factory = new FruitFactory();
 	    Random numberOfFruits = new Random();
 	    MP3Player mp3Player = new MP3Player(new File("throw.mp3"));
-	    MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
 	    MP3Player bombSound=new MP3Player(new File("Fuse.mp3"));
 
 	    public ExpDifficulty(){
@@ -39,8 +38,6 @@ public class ExpDifficulty implements ILevel{
 
 	    @Override
 	    public void initObjects(Thread thread,Handler handler) {
-	    mp3Player1.setRepeat(true);
-	    mp3Player1.play();
 	    int random,i,j;
 	    int fruitCount = 0;
 	    //while (true) {
@@ -57,7 +54,7 @@ public class ExpDifficulty implements ILevel{
 	            mp3Player.play();
 	            try {
 	                while(j<noOfBombs && !bombCreated) {
-	                    handler.addObject(factory2.create("fatal"));// randomize el type lamma ne3mel el tanya
+	                    handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
 	                    bombSound.play();
 	                    Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
 	                    j++;
