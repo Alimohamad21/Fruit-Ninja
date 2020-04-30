@@ -1,14 +1,15 @@
 package initilalizer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 ///Singleton
 public class Player{
-  private int points;
-  private ArrayList <Observer> observers = new ArrayList<Observer>();
+  private int points=0;
   private int life;
   private String userName;
   private static Player player;
+  List <Observer> observers = new ArrayList<>();
   private Player() {
   }
 
@@ -58,8 +59,9 @@ public void unregister(Observer o) {
 }
 
 public void notifyAllObservers() {
-	int i;
-	for(i=0;i<observers.size();i++) {
-	observers.get(i).update();}
+	try {
+	for (Observer x : observers) {
+	x.update(points);
+	}}catch(Exception e) {}
 	}
 }

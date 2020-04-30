@@ -37,9 +37,9 @@ public class GameLoop extends Canvas implements Runnable{
         handler = new Handler();
         player= Player.getPlayer();
         control = new LevelController();
-        player.register(window);
         player.register(control);
         window = new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
+        player.register(window);
         control.Generate(thread,handler);
 }
         
@@ -110,23 +110,19 @@ public class GameLoop extends Canvas implements Runnable{
                    if (mouse.y>= object.getYCoordinate() && mouse.y<= object.getYCoordinate() + object.getImg().getHeight()) {
                        if (!object.isSliced()) {
                     	   if(String.valueOf(object.getObjectType())=="fruit"){
-                    	   System.out.println("mizo0");
                     	   player.setPoints(player.getPoints()+1);
                            object.setSliced(true);
                            splash.play();
                     	   }
-                    	   else {
-                    		   System.out.println("mizo1");
+                    	   else {                    		   
                     		   player.setLife(player.getLife()-1);
-                    		   //object.setSliced(true);
+                    		   object.setSliced(true);
                     		   }
                        }
                    }
                }
            }
-       }catch (Exception e){
-     System.out.println("mizo3");
-       }
+       }catch (Exception e){}
         BufferStrategy bufferSt = this.getBufferStrategy();
         if (bufferSt == null) {
             this.createBufferStrategy(3);

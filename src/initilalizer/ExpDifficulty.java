@@ -11,8 +11,15 @@ import jaco.mp3.player.MP3Player;
 
 public class ExpDifficulty implements ILevel{
 
-	 private int timeBetweenLoops;
-	    private Handler handler;
+	    private int timeBetweenLoops;
+	    BombFactory factory2 = new BombFactory();
+	    Random numberOfObjects = new Random();
+	    Random interval = new Random();
+	    FruitFactory factory = new FruitFactory();
+	    Random numberOfFruits = new Random();
+	    MP3Player mp3Player = new MP3Player(new File("throw.mp3"));
+	    MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
+	    MP3Player bombSound=new MP3Player(new File("Fuse.mp3"));
 
 	    public ExpDifficulty(){
 	    	timeBetweenLoops = 70;
@@ -32,20 +39,11 @@ public class ExpDifficulty implements ILevel{
 
 	    @Override
 	    public void initObjects(Thread thread,Handler handler) {
-	    MP3Player mp3Player = new MP3Player(new File("throw.mp3"));
-	    MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
-	    MP3Player bombSound=new MP3Player(new File("Fuse.mp3"));
 	    mp3Player1.setRepeat(true);
 	    mp3Player1.play();
-	    FruitFactory factory1 = new FruitFactory();
-	    BombFactory factory2 = new BombFactory();
-	    Random numberOfObjects = new Random();
-	    Random interval = new Random();
-	    FruitFactory factory = new FruitFactory();
-	    Random numberOfFruits = new Random();
 	    int random,i,j;
 	    int fruitCount = 0;
-	    while (true) {
+	    //while (true) {
 	        random = 2+numberOfFruits.nextInt(2);
 	        boolean bombCreated=false;
 	        Random bombs=new Random();
@@ -72,8 +70,7 @@ public class ExpDifficulty implements ILevel{
 	            }
 	        }
 	        while (!handler.listOfObjects.isEmpty()) handler.removeOutOfBoundObjects();
-	    }
-
+	   // }
 	}
 
 }

@@ -5,14 +5,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Window extends JPanel implements Observer{
 
 	private static final long serialVersionUID = -6374877296636020057L;
-	private Player player= Player.getPlayer();
-	private int points;
+	private int points=0;;
 
 	public Window(int width, int height, String title, GameLoop game) {
 		JFrame frame= new JFrame(title);
@@ -28,15 +30,25 @@ public class Window extends JPanel implements Observer{
 }
 
 public void drawLabels(Graphics graphics,long currentTime,long startTime) {
+	BufferedImage melonback;
+	try {
+	    melonback = ImageIO.read(this.getClass().getResource("score.png"));
+	    graphics.drawImage(melonback, 0, 0, null);
+	  } catch (IOException exc) {
+	    System.out.println("melon background");
+	  }
     int runtime=(int)((currentTime-startTime)/1000);
+    String time = String.format("%02d:%02d", runtime / 60, runtime % 60);
     graphics.setFont(new Font("Tahoma",Font.ITALIC,24));
     graphics.setColor(Color.YELLOW);
     if(runtime<=9) {graphics.drawString("0:0"+String.valueOf(runtime), 550, 30);}
-    else {graphics.drawString("0:"+String.valueOf(runtime), 550, 30);}
-    graphics.drawString("Points:"+String.valueOf(points),20, 30);
+    else {graphics.drawString(time, 550, 30);}
+    graphics.drawString("Score:"+String.valueOf(points),20, 30);
 }
+  
+
 	@Override
-	public void update() {
-		points= player.getPoints();
+	public void update(int points) {
+		this.points= points;
 	}
 }

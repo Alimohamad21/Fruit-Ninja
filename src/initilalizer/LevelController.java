@@ -3,24 +3,29 @@ package initilalizer;
 public class LevelController implements Observer{
     private ILevel difficulty;
     private int points=0;
-    private Player player= Player.getPlayer();
+    private boolean stCreated=false, expCreated=false;
 
    public LevelController(){   
    }
-    
-    public void Generate(Thread thread,Handler handler) {
-        if(points<50){
-        	difficulty= new StarterDifficulty();
-        	player.register((StarterDifficulty) difficulty);
-        	difficulty.initObjects(thread,handler);
-        }else{
-        	difficulty= new ExpDifficulty();
-        	difficulty.initObjects(thread,handler);
-        }
-    }
 
 	@Override
-	public void update() {
-		this.points= player.getPoints();
+	public void update(int points) {
+		this.points= points;
 	}
+	
+	public void Generate(Thread thread,Handler handler) {
+		while(true) {
+        if(points<10){
+        	if(!stCreated){
+        	difficulty= new StarterDifficulty();
+        	stCreated=true;}
+        	difficulty.initObjects(thread,handler);
+        }else{
+        	if(!expCreated) {
+        	difficulty= new ExpDifficulty();
+        	expCreated=true;}
+        	difficulty.initObjects(thread,handler);
+        }
+      }
+    }
 }
