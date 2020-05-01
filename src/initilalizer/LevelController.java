@@ -16,7 +16,7 @@ public class LevelController implements Observer{
 	public void Generate(Thread thread,Handler handler) {
 		while(true) {
         if(points<10){
-        	if(!stCreated){
+        	if(!stCreated) {
         	difficulty= new StarterDifficulty();
         	stCreated=true;}
 		}else{
