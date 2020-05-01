@@ -27,8 +27,8 @@ public class GameState {
         for (int i = 0; i < this.gameObjects.size(); ++i) {
             this.gameObjects.get(i).SaveObject(newGameState);
         }
-        playerLife = Player.getPlayer().getLife();
-        playerPoints = Player.getPlayer().getPoints();
+        newGameState.playerLife = Player.getPlayer().getLife();
+        newGameState.playerPoints = Player.getPlayer().getPoints();
         newGameState.missedFruits = this.missedFruits;
         newGameState.highestScore = this.highestScore;
         checkPoint.add(newGameState);
