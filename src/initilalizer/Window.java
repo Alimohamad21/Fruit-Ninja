@@ -1,5 +1,7 @@
 package initilalizer;
 
+import jaco.mp3.player.MP3Player;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,6 +11,7 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -18,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 public class Window extends JPanel implements Observer{
 
 	private static final long serialVersionUID = -6374877296636020057L;
-	private int points=0;;
+	private int points=0;
 	JFrame frame;
 	JPanel contentPane;
 	JLabel melon;
@@ -26,6 +29,7 @@ public class Window extends JPanel implements Observer{
 	JLabel ninja;
 	JLabel fruit;
 	JLabel shadow;
+	private long startTime=0 ;
 
 	public Window(int width, int height, String title, GameLoop game) {
 		frame= new JFrame(title);
@@ -46,33 +50,33 @@ public class Window extends JPanel implements Observer{
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		//frame.getContentPane().add(game);
-		
+
 		melon = new JLabel("New label");
-		
+
 		melon.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/sandia.png")));
 		melon.setBounds(246, 249, 106, 85);
 		contentPane.add(melon);
-		
+
 		newGame = new JLabel("New label");
 		newGame.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/new-game.png")));
 		newGame.setBounds(196, 194, 194, 195);
 		contentPane.add(newGame);
-		
+
 		ninja = new JLabel("New label");
 		ninja.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/ninja.png")));
 		ninja.setBounds(311, 42, 165, 74);
 		contentPane.add(ninja);
-		
+
 		fruit = new JLabel("New label");
 		fruit.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/logo.png")));
 		fruit.setBounds(10, -11, 290, 140);
 		contentPane.add(fruit);
-		
+
 		shadow = new JLabel("New label");
 		shadow.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/home-mask.png")));
 		shadow.setBounds(0, 0, 614, 183);
 		contentPane.add(shadow);
-		
+
 		JLabel background = new JLabel("New label");
 		background.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/background.jpg")));
 		background.setBounds(-16, -38, 640, 640*9/12);
@@ -80,6 +84,9 @@ public class Window extends JPanel implements Observer{
 		melon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				startTime= System.currentTimeMillis();
+				MP3Player slice=new MP3Player(new File("splatter.mp3"));
+				slice.play();
 				contentPane.removeAll();
 				//frame.remove(contentPane);
 				contentPane.revalidate();
@@ -96,7 +103,7 @@ public class Window extends JPanel implements Observer{
 		        frame1.add(game);
 		        frame1.setVisible(true);
 		        game.start();
-				
+
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -110,9 +117,10 @@ public class Window extends JPanel implements Observer{
 		});
 		//game.start();
 		frame.setVisible(true);
-		
+
 	}
-	public void drawLabels(Handler handler, Graphics graphics, long currentTime, long startTime) {
+	public void drawLabels(Handler handler, Graphics graphics, long currentTime) {
+
         BufferedImage melonback;
         try {
             melonback = ImageIO.read(this.getClass().getResource("score.png"));
@@ -121,29 +129,18 @@ public class Window extends JPanel implements Observer{
             System.out.println("melon background");
         }
         int runtime = (int) ((currentTime - startTime) / 1000);
+
         String time = String.format("%02d:%02d", runtime / 60, runtime % 60);
         String highScore = String.format("%d", handler.getGameState().getHighestScore());
-        graphics.setFont(new Font("Tahoma", Font.ITALIC, 24));
+		graphics.setColor(Color.YELLOW);
+		graphics.setFont(new Font("Bauhaus 93", Font.BOLD, 28));
+            graphics.drawString(time, 540, 30);
+        graphics.drawString("Score:" + points, 30, 25);
+        graphics.setFont(new Font("Bauhaus 93", Font.BOLD, 18));
         graphics.setColor(Color.YELLOW);
-        if (runtime <= 9) {
-            graphics.drawString("0:0" + String.valueOf(runtime), 550, 30);
-        } else {
-            graphics.drawString(time, 550, 30);
-        }
-        graphics.drawString("Score:" + String.valueOf(points), 30, 25);
-        graphics.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        graphics.setColor(Color.WHITE);
-        graphics.drawString("HighScore:" + String.valueOf(highScore), 30, 50);
-
+        graphics.drawString("Best:" + highScore, 30, 50);
     }
 
-    public void gameOver() {
-        JLabel hard = new JLabel();
-        Image img = new ImageIcon(this.getClass().getResource("hard.png")).getImage();
-        hard.setIcon(new ImageIcon(img));
-        hard.setBounds(484, 47, 120, 120);
-        frame.add(hard);
-    }
 
 
     @Override

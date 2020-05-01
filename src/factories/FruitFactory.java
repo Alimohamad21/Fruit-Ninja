@@ -12,7 +12,7 @@ public class FruitFactory {
     public Fruit create(String fruitType) throws NullPointerException {
         Random r = new Random();
         Random superFruit = new Random();
-        int noOfSuperFruits = superFruit.nextInt(30);
+        int noOfSuperFruits = superFruit.nextInt(10);
         int x_axis = r.nextInt(WIDTH - 100);
         Fruit fruit = null;
         if (fruitType.equalsIgnoreCase("Strawberry"))
@@ -24,11 +24,11 @@ public class FruitFactory {
         if (fruitType.equalsIgnoreCase("Peach"))
             fruit = new Peach(x_axis, HEIGHT - 33);
         if (fruitType.equalsIgnoreCase("Banana")) {
-           /* if (noOfSuperFruits - 6 == 0)
-                fruit = new SuperFreezeFruit(x_axis, HEIGHT - 33);
+            if (noOfSuperFruits - 6 == 0)
+                fruit = new Superx2Fruit(x_axis, HEIGHT - 33);
             else
-                fruit = new Banana(x_axis, HEIGHT - 33);*/
-            fruit = new SuperFreezeFruit(x_axis, HEIGHT - 33);
+                fruit = new Banana(x_axis, HEIGHT - 33);
+            //fruit = new Superx2Fruit(x_axis, HEIGHT - 33);
 
         }
         return fruit;

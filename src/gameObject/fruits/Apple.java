@@ -17,8 +17,9 @@ public class Apple extends Fruit {
 	private BufferedImage img1 = null;
 	private BufferedImage img2 = null;
     public Apple() {
-    };
-    public Apple(int x, int y) {
+    }
+
+	public Apple(int x, int y) {
         super(x, y);
         objectLife = 1;
         sliced = false;

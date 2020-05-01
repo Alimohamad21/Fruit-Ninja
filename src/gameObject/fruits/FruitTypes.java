@@ -2,17 +2,17 @@ package gameObject.fruits;
 
 import java.util.Random;
 
-public enum fruitTypes {
+public enum FruitTypes {
     Watermelon,
     Apple,
     Banana,
     Peach,
     Strawberry;
-     public fruitTypes fruitTypes;
+     public FruitTypes fruitTypes;
 
     public String randomFruitTypes() {
         Random random = new Random();
-        return String.valueOf(fruitTypes.values()[random.nextInt(fruitTypes.values().length)]);
+        return String.valueOf(FruitTypes.values()[random.nextInt(FruitTypes.values().length)]);
     }
 
 }

@@ -8,6 +8,6 @@ public enum BombsTypes {
  public BombsTypes bombsTypes;
  public String randomBombsTypes() {
      Random random = new Random();
-     return String.valueOf(bombsTypes.values()[random.nextInt(bombsTypes.values().length)]);
+     return String.valueOf(BombsTypes.values()[random.nextInt(BombsTypes.values().length)]);
  }
 }

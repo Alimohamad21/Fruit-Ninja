@@ -14,7 +14,6 @@ public class Watermelon extends Fruit {
     public Watermelon() {
     }
 
-    ;
     private BufferedImage img1 = null;
     private BufferedImage img2 = null;
 

@@ -11,8 +11,9 @@ import javax.swing.ImageIcon;
 
 public class Strawberry extends Fruit {
 
-    public Strawberry() {};
-    private BufferedImage img1 = null;
+    public Strawberry() {}
+
+	private BufferedImage img1 = null;
     private BufferedImage img2 = null;
     public Strawberry(int x, int y) {
         super(x, y);

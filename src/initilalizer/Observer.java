@@ -1,5 +1,5 @@
 package initilalizer;
 
 public interface Observer {
-	public void update(int points);
+	void update(int points);
 }

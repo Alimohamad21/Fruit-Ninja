@@ -1,23 +1,16 @@
 package initilalizer;
 
 import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import factories.BombFactory;
-import factories.FruitFactory;
 import gameObject.GameObject;
-import gameObject.bombs.BombsTypes;
 import gameObject.fruits.GameState;
-import gameObject.fruits.fruitTypes;
 import jaco.mp3.player.MP3Player;
 
 public class GameLoop extends Canvas implements Runnable {
@@ -32,7 +25,6 @@ public class GameLoop extends Canvas implements Runnable {
     private Player player;
     private Window window;
     private LevelController control;
-    private final long startTime = System.currentTimeMillis();
     boolean gameOver = false;
     BufferedImage death1 = null;
     BufferedImage death2 = null;
@@ -132,7 +124,6 @@ public class GameLoop extends Canvas implements Runnable {
             gameOverSound.play();
             //window.gameOver();
             gameState.Save();
-            ;
             stop();
         }
         handler.tick();
@@ -146,8 +137,8 @@ public class GameLoop extends Canvas implements Runnable {
             int i;
             for (i = 0; i < handler.getListOfObjects().size(); i++) {
                 GameObject object = handler.getListOfObjects().get(i);
-                if (mouse.x >= object.getXCoordinate() && mouse.x <= object.getXCoordinate() + object.getImg().getWidth()) {
-                    if (mouse.y >= object.getYCoordinate() && mouse.y <= object.getYCoordinate() + object.getImg().getHeight()) {
+                if (Mouse.x >= object.getXCoordinate() && Mouse.x <= object.getXCoordinate() + object.getImg().getWidth()) {
+                    if (Mouse.y >= object.getYCoordinate() && Mouse.y <= object.getYCoordinate() + object.getImg().getHeight()) {
                         if (!object.isSliced()) {
                             if (String.valueOf(object.getObjectType()) == "fruit") {
                                 int factor=1;
@@ -205,7 +196,7 @@ public class GameLoop extends Canvas implements Runnable {
         Graphics graphics = bufferSt.getDrawGraphics();
         long currentTime = System.currentTimeMillis();
         graphics.drawImage(img1, 0, 0, null);
-        window.drawLabels(handler, graphics, currentTime, startTime);
+        window.drawLabels(handler, graphics, currentTime);
         graphics.drawImage(life1, WIDTH - 215, 5, null);
         graphics.drawImage(life2, WIDTH - 190, 5, null);
         graphics.drawImage(life3, WIDTH - 160, 5, null);

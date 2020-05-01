@@ -19,7 +19,8 @@ public abstract class Bombs extends GameObject {
     }
 
     public Bombs() {
-    };
+    }
+
     public void SaveObject(GameState gameState) {
 
     }

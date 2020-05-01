@@ -2,13 +2,9 @@ package initilalizer;
 
 import gameObject.GameObject;
 import gameObject.GameObject.ObjectType;
-import gameObject.fruits.Fruit;
 import gameObject.fruits.GameState;
-import gameObject.fruits.fruitTypes;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static initilalizer.GameLoop.HEIGHT;

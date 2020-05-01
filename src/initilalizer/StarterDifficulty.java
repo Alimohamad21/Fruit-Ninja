@@ -6,7 +6,7 @@ import java.util.Random;
 import factories.BombFactory;
 import factories.FruitFactory;
 import gameObject.bombs.BombsTypes;
-import gameObject.fruits.fruitTypes;
+import gameObject.fruits.FruitTypes;
 import jaco.mp3.player.MP3Player;
 
 public class StarterDifficulty implements ILevel {
@@ -29,7 +29,7 @@ public class StarterDifficulty implements ILevel {
     public void initObjects(Thread thread, Handler handler) {
         int random, i;
         int fruitCount = 0;
-        fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
+        FruitTypes fruitTypes = FruitTypes.Apple;
         BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
         if (!entered) {
             try {

@@ -14,7 +14,6 @@ public class Banana extends Fruit {
     public Banana() {
     }
 
-    ;
     private BufferedImage img1 = null;
     private BufferedImage img2 = null;
 

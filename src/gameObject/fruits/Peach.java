@@ -11,8 +11,9 @@ import javax.swing.ImageIcon;
 
 public class Peach extends Fruit {
 
-    public Peach() {};
-    private BufferedImage img1 = null;
+    public Peach() {}
+
+	private BufferedImage img1 = null;
     private BufferedImage img2 = null;
     public Peach(int x, int y) {
         super(x, y);

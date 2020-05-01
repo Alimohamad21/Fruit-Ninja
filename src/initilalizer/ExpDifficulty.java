@@ -6,7 +6,7 @@ import java.util.Random;
 import factories.BombFactory;
 import factories.FruitFactory;
 import gameObject.bombs.BombsTypes;
-import gameObject.fruits.fruitTypes;
+import gameObject.fruits.FruitTypes;
 import jaco.mp3.player.MP3Player;
 
 public class ExpDifficulty implements ILevel{
@@ -48,7 +48,7 @@ public class ExpDifficulty implements ILevel{
 	        int noOfBombs=bombs.nextInt(3);
 	        j=0;
 	        for (i = 0; i < random; i++){
-	            fruitTypes fruitTypes = gameObject.fruits.fruitTypes.Apple;
+	            FruitTypes fruitTypes = FruitTypes.Apple;
 	            BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
 	            handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
 	            mp3Player.play();

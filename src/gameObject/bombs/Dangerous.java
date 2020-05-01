@@ -7,8 +7,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Dangerous extends Bombs{
-	public Dangerous() {};
-    private BufferedImage img1 = null;
+	public Dangerous() {}
+
+	private BufferedImage img1 = null;
     public Dangerous(int x, int y) {
         super(x, y);
         objectLife = 1;
