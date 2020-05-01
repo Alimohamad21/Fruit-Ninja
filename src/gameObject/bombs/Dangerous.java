@@ -13,9 +13,8 @@ public class Dangerous extends Bombs{
         super(x, y);
         objectLife = 1;
         sliced = false;
-        this.length = 2; //to be determined//
-        this.width = 1; //to be determined//
     }
+
     public void render(Graphics graphics) {
 		try
 		{

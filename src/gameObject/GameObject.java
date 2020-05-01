@@ -1,5 +1,7 @@
 package gameObject;
 
+import gameObject.fruits.GameState;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -7,21 +9,37 @@ public abstract class GameObject {
     protected double xCoordinate, yCoordinate;
     protected double velocityX, velocityY;
     protected int objectLife;
-    protected float length;
-    protected float width;
-    protected int ascendingVelocity;
+
     protected boolean sliced;
     protected int points;
     private BufferedImage img;
 
-	public enum ObjectType {
+    public enum ObjectType {
         fruit,
         bomb;
     }
 
     public ObjectType objectType;
 
-    public GameObject(){};
+    public GameObject() {
+    }
+
+    public void SaveObject(GameState gameState) {
+
+    }
+
+    public GameObject(double xCoordinate, double yCoordinate, double velocityX, double velocityY, int objectLife, boolean sliced, int points, BufferedImage img) {
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+        this.objectLife = objectLife;
+        this.sliced = sliced;
+        this.points = points;
+        this.img = img;
+        // this.objectType = objectType;
+    }
+
     public GameObject(int xCoordinate, int yCoordinate) {
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
@@ -36,11 +54,13 @@ public abstract class GameObject {
      **/
 
     public BufferedImage getImg() {
-		return img;
-	}
-	public void setImg(BufferedImage img) {
-		this.img = img;
-	}
+        return img;
+    }
+
+    public void setImg(BufferedImage img) {
+        this.img = img;
+    }
+
     public double getXCoordinate() {
         return xCoordinate;
     }
@@ -49,7 +69,7 @@ public abstract class GameObject {
         this.xCoordinate = xCoordinate;
     }
 
-    public  double getYCoordinate() {
+    public double getYCoordinate() {
         return yCoordinate;
     }
 
@@ -57,7 +77,7 @@ public abstract class GameObject {
         this.yCoordinate = yCoordinate;
     }
 
-    public  double getVelocityX() {
+    public double getVelocityX() {
         return velocityX;
     }
 
@@ -65,7 +85,7 @@ public abstract class GameObject {
         this.velocityX = velocityX;
     }
 
-    public  double getVelocityY() {
+    public double getVelocityY() {
         return velocityY;
     }
 
@@ -79,30 +99,6 @@ public abstract class GameObject {
 
     public void setObjectLife(int objectLife) {
         this.objectLife = objectLife;
-    }
-
-    public float getLength() {
-        return length;
-    }
-
-    public void setLength(float length) {
-        this.length = length;
-    }
-
-    public float getWidth() {
-        return width;
-    }
-
-    public void setWidth(float width) {
-        this.width = width;
-    }
-
-    public int getAscendingVelocity() {
-        return ascendingVelocity;
-    }
-
-    public void setAscendingVelocity(int ascendingVelocity) {
-        this.ascendingVelocity = ascendingVelocity;
     }
 
     public boolean isSliced() {

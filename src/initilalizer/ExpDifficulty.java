@@ -66,7 +66,7 @@ public class ExpDifficulty implements ILevel{
 	                // System.out.println("Ali");
 	            }
 	        }
-	        while (!handler.listOfObjects.isEmpty()) handler.removeOutOfBoundObjects();
+	        while (!handler.getListOfObjects().isEmpty()) handler.removeOutOfBoundObjects();
 	   // }
 	}
 

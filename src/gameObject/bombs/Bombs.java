@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import gameObject.GameObject;
+import gameObject.fruits.GameState;
 import initilalizer.GameLoop;
 
 public abstract class Bombs extends GameObject {
@@ -18,8 +19,10 @@ public abstract class Bombs extends GameObject {
     }
 
     public Bombs() {
-    	
     };
+    public void SaveObject(GameState gameState) {
+
+    }
     
     public Bombs(int x, int y) {
         super(x, y);

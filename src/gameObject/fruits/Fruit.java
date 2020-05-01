@@ -25,30 +25,40 @@ public abstract class Fruit extends GameObject {
     public Fruit() {
     }
 
-    ;
+    @Override
+    public void SaveObject(GameState gameState) {
+
+    }
 
     public Fruit(int x, int y) {
-       super(x, y);
-        Random randomDirection=new Random();
-     if(xCoordinate<200)
-     velocityX=1.5;
-     else if(xCoordinate>300)
-         velocityX=-1.5;
-     else
-     {velocityX = -2+randomDirection.nextInt(5);}
-        velocityY =8;
+        super(x, y);
+        Random randomDirection = new Random();
+        if (xCoordinate < 200)
+            velocityX = 1.5;
+        else if (xCoordinate > 300)
+            velocityX = -1.5;
+        else {
+            velocityX = -2 + randomDirection.nextInt(5);
+        }
+        velocityY = 8;
     }
-	public void tick() {
-        xCoordinate+=velocityX;
+
+    public Fruit(double xCoordinate, double yCoordinate, double velocityX, double velocityY, int objectLife, boolean sliced, int points, BufferedImage img) {
+        super(xCoordinate, yCoordinate, velocityX, velocityY, objectLife, sliced, points, img);
+
+    }
+
+    public void tick() {
+        xCoordinate += velocityX;
         yCoordinate -= velocityY;
-        Random maxHeight=new Random();
-        if (flag&& yCoordinate == GameLoop.HEIGHT - 32) yCoordinate = GameLoop.HEIGHT;
-      if (yCoordinate <= maxHeight.nextInt(300) || (yCoordinate >= GameLoop.HEIGHT - 32 && !flag)) {
-            velocityY-=0.35;
+        Random maxHeight = new Random();
+        if (flag && yCoordinate == GameLoop.HEIGHT - 32) yCoordinate = GameLoop.HEIGHT;
+        if (yCoordinate <= maxHeight.nextInt(300) || (yCoordinate >= GameLoop.HEIGHT - 32 && !flag)) {
+            velocityY -= 0.35;
             flag = true;
         }
     }
 
-   abstract public void render(Graphics graphics);
+    abstract public void render(Graphics graphics);
 
 }

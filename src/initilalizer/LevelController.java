@@ -19,13 +19,12 @@ public class LevelController implements Observer{
         	if(!stCreated){
         	difficulty= new StarterDifficulty();
         	stCreated=true;}
-        	difficulty.initObjects(thread,handler);
-        }else{
+		}else{
         	if(!expCreated) {
         	difficulty= new ExpDifficulty();
         	expCreated=true;}
-        	difficulty.initObjects(thread,handler);
-        }
-      }
+		}
+			difficulty.initObjects(thread,handler);
+		}
     }
 }

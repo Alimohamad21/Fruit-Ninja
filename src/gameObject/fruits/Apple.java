@@ -22,11 +22,16 @@ public class Apple extends Fruit {
         super(x, y);
         objectLife = 1;
         sliced = false;
-        this.length = 2; //to be determined//
-        this.width = 1; //to be determined//
         points = objectLife * 10;
     }
+	public Apple(double xCoordinate, double yCoordinate, double velocityX, double velocityY, int objectLife, boolean sliced, int points, BufferedImage img) {
+		super(xCoordinate, yCoordinate, velocityX, velocityY, objectLife, sliced, points, img);
 
+	}
+	@Override
+	public void SaveObject(GameState gameState) {
+    	gameState.gameObjects.add(new Apple(this.getXCoordinate(), this.getYCoordinate(), this.getVelocityX(), this.getVelocityY(), this.getObjectLife(), this.isSliced(), this.getPoints(), this.getImg()));
+	}
     public void render(Graphics graphics) {
     	if(!sliced) {
     		try

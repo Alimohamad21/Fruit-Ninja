@@ -16,10 +16,11 @@ import factories.BombFactory;
 import factories.FruitFactory;
 import gameObject.GameObject;
 import gameObject.bombs.BombsTypes;
+import gameObject.fruits.GameState;
 import gameObject.fruits.fruitTypes;
 import jaco.mp3.player.MP3Player;
 
-public class GameLoop extends Canvas implements Runnable{
+public class GameLoop extends Canvas implements Runnable {
     private static final long serialVersionUID = 2916851953456180804L;
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
 
@@ -29,36 +30,38 @@ public class GameLoop extends Canvas implements Runnable{
     private Handler handler;
     private BufferedImage img1;
     private Player player;
-    Window window;
-    LevelController control;
-    private final long startTime=System.currentTimeMillis();
-    boolean gameOver=false;
-    BufferedImage death1=null;
-    BufferedImage death2=null;
-    BufferedImage death3=null;
+    private Window window;
+    private LevelController control;
+    private final long startTime = System.currentTimeMillis();
+    boolean gameOver = false;
+    BufferedImage death1 = null;
+    BufferedImage death2 = null;
+    BufferedImage death3 = null;
     MP3Player music = new MP3Player(new File("menu.mp3"));
+    GameState gameState;
 
 
     public GameLoop() {
+        gameState = new GameState();
         handler = new Handler();
-        player= Player.getPlayer();
+        player = Player.getPlayer();
         control = new LevelController();
         player.register(control);
         window = new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
         player.register(window);
-        control.Generate(thread,handler);
-}
-        
-     public void start() {
+        control.Generate(thread, handler);
+    }
+
+    public void start() {
         try {
             img1 = ImageIO.read(this.getClass().getResource("background.jpg"));
         } catch (IOException exc) {
             System.out.println("Background");
         }
-        MP3Player start=new MP3Player(new File("start.mp3"));
+        MP3Player start = new MP3Player(new File("start.mp3"));
         start.play();
-		music.setRepeat(true);
-		music.play();
+        music.setRepeat(true);
+        music.play();
         thread = new Thread(this);
         thread.start();
         running = true;
@@ -87,7 +90,6 @@ public class GameLoop extends Canvas implements Runnable{
             lastTime = now;
             while (delta >= 1) {
                 tick();
-
                 delta--;
             }
             if (running) {
@@ -104,77 +106,76 @@ public class GameLoop extends Canvas implements Runnable{
                 //System.out.println("FPS: "+ frames);
                 frames = 0;
             }
-            BufferedImage gameover=null;
-            try
-            {
+            BufferedImage gameover = null;
+            try {
 
                 gameover = ImageIO.read(this.getClass().getResource("game-over.png"));
-            }
-            catch ( IOException exc )
-            {
+            } catch (IOException exc) {
                 System.out.println("Game over rendering failed");
             }
-            if(player.getLife()<=0) {
+            if (player.getLife() <= 0) {
                 getGraphics().drawImage(gameover, 50, 200, null);
-
-                getGraphics().drawImage( death1,WIDTH-215,5,null);
-                getGraphics().drawImage( death2,WIDTH-190,5,null);
-                getGraphics().drawImage( death3,WIDTH-160,5,null);
-
-                gameOver=true;
+                getGraphics().drawImage(death1, WIDTH - 215, 5, null);
+                getGraphics().drawImage(death2, WIDTH - 190, 5, null);
+                getGraphics().drawImage(death3, WIDTH - 160, 5, null);
+                gameOver = true;
             }
         }
         stop();
     }
 
-    public void tick() {MP3Player gameOverSound=new MP3Player(new File("over.mp3"));
-        if(gameOver) {
+    public void tick() {
+        MP3Player gameOverSound = new MP3Player(new File("over.mp3"));
+        if (gameOver) {
             music.stop();
             gameOverSound.play();
+            //window.gameOver();
+            gameState.Save();;
             stop();
         }
         handler.tick();
     }
 
     public void render() throws InterruptedException {
-           try {
-           Mouse mouse = new Mouse();
-           addMouseMotionListener(mouse);
-           MP3Player splash=new MP3Player(new File("splatter.mp3"));
-           int i;
-           for (i = 0; i < handler.listOfObjects.size(); i++) {
-               GameObject object = handler.listOfObjects.get(i);
-               if (mouse.x>= object.getXCoordinate() && mouse.x <= object.getXCoordinate() + object.getImg().getWidth()) {
-                   if (mouse.y>= object.getYCoordinate() && mouse.y<= object.getYCoordinate() + object.getImg().getHeight()) {
-                       if (!object.isSliced()) {
-                    	   if(String.valueOf(object.getObjectType())=="fruit"){
-                    	   player.setPoints(player.getPoints()+1);
-                           object.setSliced(true);
-                           splash.play();
-                    	   }
-                    	   else {MP3Player bombSound=new MP3Player(new File("boom.mp3"));
-                    	   bombSound.play();
-                    		   if(object.getObjectLife()==100) player.setLife(0);
-                    		   if(player.getLife()>0) {
-                    		   player.setLife(player.getLife()-1);}
-                    		   object.setSliced(true);
-                    		   }
-                       }
-                   }
-               }
-           }
-       }catch (Exception e){}
+        try {
+            Mouse mouse = new Mouse();
+            addMouseMotionListener(mouse);
+            MP3Player splash = new MP3Player(new File("splatter.mp3"));
+            int i;
+            for (i = 0; i < handler.getListOfObjects().size(); i++) {
+                GameObject object = handler.getListOfObjects().get(i);
+                if (mouse.x >= object.getXCoordinate() && mouse.x <= object.getXCoordinate() + object.getImg().getWidth()) {
+                    if (mouse.y >= object.getYCoordinate() && mouse.y <= object.getYCoordinate() + object.getImg().getHeight()) {
+                        if (!object.isSliced()) {
+                            if (String.valueOf(object.getObjectType()) == "fruit") {
+                                player.setPoints(player.getPoints() + 1);
+                                object.setSliced(true);
+                                splash.play();
+                            } else {
+                                MP3Player bombSound = new MP3Player(new File("boom.mp3"));
+                                bombSound.play();
+                                if (object.getObjectLife() == 100) player.setLife(0);
+                                if (player.getLife() > 0) {
+                                    player.setLife(player.getLife() - 1);
+                                }
+                                object.setSliced(true);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
         BufferStrategy bufferSt = this.getBufferStrategy();
         if (bufferSt == null) {
             this.createBufferStrategy(3);
             return;
         }
-        BufferedImage life1=null;
-        BufferedImage life2=null;
-        BufferedImage life3=null;
+        BufferedImage life1 = null;
+        BufferedImage life2 = null;
+        BufferedImage life3 = null;
 
-        try
-        {
+        try {
 
             life1 = ImageIO.read(this.getClass().getResource("x.png"));
             life2 = ImageIO.read(this.getClass().getResource("xx.png"));
@@ -182,28 +183,26 @@ public class GameLoop extends Canvas implements Runnable{
             death1 = ImageIO.read(this.getClass().getResource("xf.png"));
             death2 = ImageIO.read(this.getClass().getResource("xxf.png"));
             death3 = ImageIO.read(this.getClass().getResource("xxxf.png"));
-        }
-        catch ( IOException exc )
-        {
+        } catch (IOException exc) {
             System.out.println("Game over rendering failed");
         }
 
         Graphics graphics = bufferSt.getDrawGraphics();
-        long currentTime=System.currentTimeMillis();
+        long currentTime = System.currentTimeMillis();
         graphics.drawImage(img1, 0, 0, null);
-        window.drawLabels(graphics,currentTime,startTime);
-        graphics.drawImage( life1,WIDTH-215,5,null);
-        graphics.drawImage( life2,WIDTH-190,5,null);
-        graphics.drawImage( life3,WIDTH-160,5,null);
-        if(player.getLife()==2)
-            graphics.drawImage( death1,WIDTH-215,5,null);
-        if(player.getLife()==1) {graphics.drawImage( death1,WIDTH-215,5,null);
+        window.drawLabels(handler,graphics, currentTime, startTime);
+        graphics.drawImage(life1, WIDTH - 215, 5, null);
+        graphics.drawImage(life2, WIDTH - 190, 5, null);
+        graphics.drawImage(life3, WIDTH - 160, 5, null);
+        if (player.getLife() == 2)
+            graphics.drawImage(death1, WIDTH - 215, 5, null);
+        if (player.getLife() == 1) {
+            graphics.drawImage(death1, WIDTH - 215, 5, null);
             graphics.drawImage(death2, WIDTH - 190, 5, null);
         }
 
 
-
-            handler.render(graphics);
+        handler.render(graphics);
         graphics.dispose();
         bufferSt.show();
     }
