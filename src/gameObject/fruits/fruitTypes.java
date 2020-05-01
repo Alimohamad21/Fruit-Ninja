@@ -2,7 +2,7 @@ package gameObject.fruits;
 
 import java.util.Random;
 
-public  enum fruitTypes {
+public enum fruitTypes {
     Watermelon,
     Apple,
     Banana,

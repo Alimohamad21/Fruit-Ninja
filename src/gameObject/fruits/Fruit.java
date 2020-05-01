@@ -25,10 +25,10 @@ public abstract class Fruit extends GameObject {
     public Fruit() {
     }
 
-    @Override
+   /* @Override
     public void SaveObject(GameState gameState) {
 
-    }
+    }*/
 
     public Fruit(int x, int y) {
         super(x, y);

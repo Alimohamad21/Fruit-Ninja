@@ -16,7 +16,8 @@ public abstract class GameObject {
 
     public enum ObjectType {
         fruit,
-        bomb;
+        bomb,
+        superFruit;
     }
 
     public ObjectType objectType;

@@ -39,6 +39,7 @@ public class GameLoop extends Canvas implements Runnable {
     BufferedImage death3 = null;
     MP3Player music = new MP3Player(new File("menu.mp3"));
     GameState gameState;
+    long currentTime;
 
 
     public GameLoop() {
@@ -130,7 +131,8 @@ public class GameLoop extends Canvas implements Runnable {
             music.stop();
             gameOverSound.play();
             //window.gameOver();
-            gameState.Save();;
+            gameState.Save();
+            ;
             stop();
         }
         handler.tick();
@@ -148,7 +150,20 @@ public class GameLoop extends Canvas implements Runnable {
                     if (mouse.y >= object.getYCoordinate() && mouse.y <= object.getYCoordinate() + object.getImg().getHeight()) {
                         if (!object.isSliced()) {
                             if (String.valueOf(object.getObjectType()) == "fruit") {
-                                player.setPoints(player.getPoints() + 1);
+                                int factor=1;
+                                if((System.nanoTime()-currentTime)/1000000000<=7)
+                                {
+                                    factor=2;
+                                    /**Insert Music*/
+                                    /**New Label*/
+                                }
+
+                                player.setPoints(player.getPoints() + factor);
+                                object.setSliced(true);
+                                splash.play();
+                            } else if (String.valueOf(object.getObjectType()) == "superFruit") {
+                                currentTime =System.nanoTime();
+                                player.setPoints(player.getPoints() + 5);
                                 object.setSliced(true);
                                 splash.play();
                             } else {
@@ -190,7 +205,7 @@ public class GameLoop extends Canvas implements Runnable {
         Graphics graphics = bufferSt.getDrawGraphics();
         long currentTime = System.currentTimeMillis();
         graphics.drawImage(img1, 0, 0, null);
-        window.drawLabels(handler,graphics, currentTime, startTime);
+        window.drawLabels(handler, graphics, currentTime, startTime);
         graphics.drawImage(life1, WIDTH - 215, 5, null);
         graphics.drawImage(life2, WIDTH - 190, 5, null);
         graphics.drawImage(life3, WIDTH - 160, 5, null);
