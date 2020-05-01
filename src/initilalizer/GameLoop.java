@@ -32,6 +32,12 @@ public class GameLoop extends Canvas implements Runnable{
     Window window;
     LevelController control;
     private final long startTime=System.currentTimeMillis();
+    boolean gameOver=false;
+    BufferedImage death1=null;
+    BufferedImage death2=null;
+    BufferedImage death3=null;
+    MP3Player music = new MP3Player(new File("menu.mp3"));
+
 
     public GameLoop() {
         handler = new Handler();
@@ -49,9 +55,10 @@ public class GameLoop extends Canvas implements Runnable{
         } catch (IOException exc) {
             System.out.println("Background");
         }
-        MP3Player mp3Player1 = new MP3Player(new File("menu.mp3"));
-		mp3Player1.setRepeat(true);
-		mp3Player1.play();
+        MP3Player start=new MP3Player(new File("start.mp3"));
+        start.play();
+		music.setRepeat(true);
+		music.play();
         thread = new Thread(this);
         thread.start();
         running = true;
@@ -84,7 +91,11 @@ public class GameLoop extends Canvas implements Runnable{
                 delta--;
             }
             if (running) {
-                render();
+                try {
+                    render();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             frames++;
 
@@ -93,15 +104,39 @@ public class GameLoop extends Canvas implements Runnable{
                 //System.out.println("FPS: "+ frames);
                 frames = 0;
             }
+            BufferedImage gameover=null;
+            try
+            {
+
+                gameover = ImageIO.read(this.getClass().getResource("game-over.png"));
+            }
+            catch ( IOException exc )
+            {
+                System.out.println("Game over rendering failed");
+            }
+            if(player.getLife()<=0) {
+                getGraphics().drawImage(gameover, 50, 200, null);
+
+                getGraphics().drawImage( death1,WIDTH-215,5,null);
+                getGraphics().drawImage( death2,WIDTH-190,5,null);
+                getGraphics().drawImage( death3,WIDTH-160,5,null);
+
+                gameOver=true;
+            }
         }
         stop();
     }
 
-    public void tick() {
+    public void tick() {MP3Player gameOverSound=new MP3Player(new File("over.mp3"));
+        if(gameOver) {
+            music.stop();
+            gameOverSound.play();
+            stop();
+        }
         handler.tick();
     }
 
-    public void render() {
+    public void render() throws InterruptedException {
            try {
            Mouse mouse = new Mouse();
            addMouseMotionListener(mouse);
@@ -117,7 +152,8 @@ public class GameLoop extends Canvas implements Runnable{
                            object.setSliced(true);
                            splash.play();
                     	   }
-                    	   else {
+                    	   else {MP3Player bombSound=new MP3Player(new File("boom.mp3"));
+                    	   bombSound.play();
                     		   if(object.getObjectLife()==100) player.setLife(0);
                     		   if(player.getLife()>0) {
                     		   player.setLife(player.getLife()-1);}
@@ -133,23 +169,42 @@ public class GameLoop extends Canvas implements Runnable{
             this.createBufferStrategy(3);
             return;
         }
-        
+        BufferedImage life1=null;
+        BufferedImage life2=null;
+        BufferedImage life3=null;
+
+        try
+        {
+
+            life1 = ImageIO.read(this.getClass().getResource("x.png"));
+            life2 = ImageIO.read(this.getClass().getResource("xx.png"));
+            life3 = ImageIO.read(this.getClass().getResource("xxx.png"));
+            death1 = ImageIO.read(this.getClass().getResource("xf.png"));
+            death2 = ImageIO.read(this.getClass().getResource("xxf.png"));
+            death3 = ImageIO.read(this.getClass().getResource("xxxf.png"));
+        }
+        catch ( IOException exc )
+        {
+            System.out.println("Game over rendering failed");
+        }
+
         Graphics graphics = bufferSt.getDrawGraphics();
-        BufferedImage gameover=null;
         long currentTime=System.currentTimeMillis();
         graphics.drawImage(img1, 0, 0, null);
-			try
-			{
-				gameover = ImageIO.read(this.getClass().getResource("game-over.png"));
-			}
-			catch ( IOException exc )
-			{
-			    System.out.println("Game over rendering failed");
-			}
-        if(player.getLife()==0) graphics.drawImage(gameover, 50, 200, null);
         window.drawLabels(graphics,currentTime,startTime);
-        handler.render(graphics);
+        graphics.drawImage( life1,WIDTH-215,5,null);
+        graphics.drawImage( life2,WIDTH-190,5,null);
+        graphics.drawImage( life3,WIDTH-160,5,null);
+        if(player.getLife()==2)
+            graphics.drawImage( death1,WIDTH-215,5,null);
+        if(player.getLife()==1) {graphics.drawImage( death1,WIDTH-215,5,null);
+            graphics.drawImage(death2, WIDTH - 190, 5, null);
+        }
+
+
+
+            handler.render(graphics);
         graphics.dispose();
-        bufferSt.show(); 
+        bufferSt.show();
     }
 }

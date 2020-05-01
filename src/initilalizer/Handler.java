@@ -61,4 +61,14 @@ public class Handler {
             }
 
     }
+
+    public void removeAllObjects() {
+        for (int i = 0; i < listOfObjects.size(); i++) {
+            if (listOfObjects.get(i).getYCoordinate() >= GameLoop.HEIGHT ) {
+                listOfObjects.remove(i);
+            }
+
+        }
+
+    }
 }
