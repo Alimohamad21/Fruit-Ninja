@@ -16,7 +16,7 @@ public class Handler {
 
 
     public Handler(String type) {
-    	this.type=type;
+        this.type = type;
         gameState = new GameState();
         mouse = new Mouse();
     }
@@ -34,7 +34,9 @@ public class Handler {
         for (int i = 0; i < gameState.getGameObjects().size(); i++) {
             GameObject object = gameState.getGameObjects().get(i);
             mouse.render(graphics);
-            if(type=="arcade" && String.valueOf(object.getObjectType()) == "bomb") { continue;}
+            if (type == "arcade" && String.valueOf(object.getObjectType()) == "bomb") {
+                continue;
+            }
             object.render(graphics);
         }
 
@@ -49,12 +51,14 @@ public class Handler {
         for (int i = 0; i < gameState.getGameObjects().size(); i++) {
             if (gameState.getGameObjects().get(i).getYCoordinate() >= HEIGHT) {
                 if (gameState.getGameObjects().get(i).getObjectType().equals(ObjectType.fruit)) {
-                    if (!gameState.getGameObjects().get(i).isSliced()) {
-                        if (player.getLife() > 0 && type=="classic") {
-                            player.setLife(player.getLife() - 1);
-                        gameState.setMissedFruits(getMissedFruits() + 1);
+                    if (!gameState.getGameObjects().get(i).getObjectType().equals(ObjectType.superFruit)) {
+                        if (!gameState.getGameObjects().get(i).isSliced()) {
+                            if (player.getLife() > 0 && type.equals("classic")) {
+                                player.setLife(player.getLife() - 1);
+                                gameState.setMissedFruits(getMissedFruits() + 1);
+                            }
                         }
-                        }
+                    }
                 }
                 if (gameState.getMissedFruits() == 3)
                     System.out.println("GAME OVER");
@@ -76,13 +80,13 @@ public class Handler {
     }
 
     public String getType() {
-		return type;
-	}
+        return type;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
-    
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public List<GameObject> getListOfObjects() {
         return gameState.getGameObjects();
     }
