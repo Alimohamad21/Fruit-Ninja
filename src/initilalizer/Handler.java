@@ -12,8 +12,10 @@ import static initilalizer.GameLoop.HEIGHT;
 public class Handler {
     private GameState gameState;
     private Mouse mouse;
+    private String type;
 
-    public Handler() {
+	public Handler(String type) {
+    	this.type=type;
         gameState = new GameState();
         mouse = new Mouse();
     }
@@ -30,6 +32,7 @@ public class Handler {
         /**m7dsh yghayr el loop dy lel tanya,CM exception**/
         for (int i = 0; i < gameState.getGameObjects().size(); i++) {
             GameObject object = gameState.getGameObjects().get(i);
+            if(type=="arcade" && String.valueOf(object.getObjectType()) == "bomb") { continue;}
             object.render(graphics);
             mouse.render(graphics);
         }
@@ -46,11 +49,12 @@ public class Handler {
             if (gameState.getGameObjects().get(i).getYCoordinate() >= HEIGHT) {
                 if (gameState.getGameObjects().get(i).getObjectType().equals(ObjectType.fruit)) {
                     if (!gameState.getGameObjects().get(i).isSliced()) {
-                        if (player.getLife() > 0) {
+                        if (player.getLife() > 0 && type=="classic") {
                             player.setLife(player.getLife() - 1);
-                        }
+                        
                         gameState.setMissedFruits(getMissedFruits() + 1);
-                    }
+                        }
+                        }
                 }
                 if (gameState.getMissedFruits() == 3)
                     System.out.println("GAME OVER");
@@ -71,6 +75,14 @@ public class Handler {
 
     }
 
+    public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+    
     public List<GameObject> getListOfObjects() {
         return gameState.getGameObjects();
     }

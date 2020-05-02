@@ -48,7 +48,7 @@ public class ExpDifficulty implements ILevel{
 	        int noOfBombs=bombs.nextInt(3);
 	        j=0;
 	        for (i = 0; i < random; i++){
-	            FruitTypes fruitTypes = FruitTypes.Apple;
+	            FruitTypes fruitTypes = gameObject.fruits.FruitTypes.Apple;
 	            BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
 	            handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
 	            mp3Player.play();

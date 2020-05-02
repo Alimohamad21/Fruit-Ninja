@@ -29,7 +29,7 @@ public class StarterDifficulty implements ILevel {
     public void initObjects(Thread thread, Handler handler) {
         int random, i;
         int fruitCount = 0;
-        FruitTypes fruitTypes = FruitTypes.Apple;
+        FruitTypes fruitTypes = gameObject.fruits.FruitTypes.Apple;
         BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
         if (!entered) {
             try {

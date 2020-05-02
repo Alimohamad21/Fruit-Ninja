@@ -20,23 +20,24 @@ public class GameLoop extends Canvas implements Runnable {
 
     private Thread thread;
     private boolean running = false;
-    private Handler handler;
-    private BufferedImage img1;
-    private Player player;
-    private Window window;
+    protected Handler handler;
+    protected BufferedImage img1;
+    protected Player player;
+    protected Window window;
     private LevelController control;
-    boolean gameOver = false;
+    private boolean gameOver = false;
     BufferedImage death1 = null;
     BufferedImage death2 = null;
     BufferedImage death3 = null;
+    BufferedImage gameover=null;
     MP3Player music = new MP3Player(new File("menu.mp3"));
-    GameState gameState;
+    private GameState gameState;
     long currentTime;
 
 
     public GameLoop() {
         gameState = new GameState();
-        handler = new Handler();
+        handler = new Handler("classic");
         player = Player.getPlayer();
         control = new LevelController();
         player.register(control);
@@ -99,7 +100,6 @@ public class GameLoop extends Canvas implements Runnable {
                 //System.out.println("FPS: "+ frames);
                 frames = 0;
             }
-            BufferedImage gameover = null;
             try {
 
                 gameover = ImageIO.read(this.getClass().getResource("game-over.png"));
@@ -122,6 +122,7 @@ public class GameLoop extends Canvas implements Runnable {
         if (gameOver) {
             music.stop();
             gameOverSound.play();
+            getGraphics().drawImage(gameover, 50, 200, null);
             //window.gameOver();
             gameState.Save();
             stop();
@@ -148,7 +149,6 @@ public class GameLoop extends Canvas implements Runnable {
                                     /**Insert Music*/
                                     /**New Label*/
                                 }
-
                                 player.setPoints(player.getPoints() + factor);
                                 object.setSliced(true);
                                 splash.play();
@@ -197,6 +197,7 @@ public class GameLoop extends Canvas implements Runnable {
         long currentTime = System.currentTimeMillis();
         graphics.drawImage(img1, 0, 0, null);
         window.drawLabels(handler, graphics, currentTime);
+        if(handler.getType()=="classic") {
         graphics.drawImage(life1, WIDTH - 215, 5, null);
         graphics.drawImage(life2, WIDTH - 190, 5, null);
         graphics.drawImage(life3, WIDTH - 160, 5, null);
@@ -206,10 +207,13 @@ public class GameLoop extends Canvas implements Runnable {
             graphics.drawImage(death1, WIDTH - 215, 5, null);
             graphics.drawImage(death2, WIDTH - 190, 5, null);
         }
-
+        }
 
         handler.render(graphics);
         graphics.dispose();
         bufferSt.show();
+    }
+    public void setGameOver(Boolean gameOver) {
+    	this.gameOver=gameOver;
     }
 }

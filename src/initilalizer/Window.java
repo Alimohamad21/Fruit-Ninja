@@ -22,13 +22,14 @@ public class Window extends JPanel implements Observer{
 
 	private static final long serialVersionUID = -6374877296636020057L;
 	private int points=0;
-	JFrame frame;
-	JPanel contentPane;
-	JLabel melon;
-	JLabel newGame;
-	JLabel ninja;
-	JLabel fruit;
-	JLabel shadow;
+	private JFrame frame;
+	private JPanel contentPane;
+	private JLabel melon;
+	private JLabel newGame;
+	private JLabel ninja;
+	private JLabel fruit;
+	private JLabel shadow;
+	private GameLoop game;
 	private long startTime=0 ;
 
 	public Window(int width, int height, String title, GameLoop game) {
@@ -41,6 +42,7 @@ public class Window extends JPanel implements Observer{
 		frame.setResizable(false);
 		//frame.add(game);
 		//frame.setVisible(true);
+		this.game=game;
 		this.mainMenu(width, height, title, game);
 }
 	public void mainMenu(int width, int height, String title, GameLoop game) {
@@ -49,18 +51,6 @@ public class Window extends JPanel implements Observer{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
-		//frame.getContentPane().add(game);
-
-		melon = new JLabel("New label");
-
-		melon.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/sandia.png")));
-		melon.setBounds(246, 249, 106, 85);
-		contentPane.add(melon);
-
-		newGame = new JLabel("New label");
-		newGame.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/new-game.png")));
-		newGame.setBounds(196, 194, 194, 195);
-		contentPane.add(newGame);
 
 		ninja = new JLabel("New label");
 		ninja.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/ninja.png")));
@@ -76,12 +66,22 @@ public class Window extends JPanel implements Observer{
 		shadow.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/home-mask.png")));
 		shadow.setBounds(0, 0, 614, 183);
 		contentPane.add(shadow);
+		
+		JLabel arcade = new JLabel("New label");
+		arcade.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/arcade.png")));
+		arcade.setBounds(52, 169, 227, 240);
+		contentPane.add(arcade);
+		
+		JLabel classic = new JLabel("New label");
+		classic.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/classicgame.png")));
+		classic.setBounds(311, 173, 230, 233);
+		contentPane.add(classic);
 
 		JLabel background = new JLabel("New label");
 		background.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/background.jpg")));
 		background.setBounds(-16, -38, 640, 640*9/12);
 		contentPane.add(background);
-		melon.addMouseListener(new MouseAdapter() {
+		classic.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				startTime= System.currentTimeMillis();
@@ -92,7 +92,6 @@ public class Window extends JPanel implements Observer{
 				contentPane.revalidate();
 				contentPane.repaint();
 				frame.dispose();
-				//frame.setContentPane(contentPane);
 				JFrame frame1 = new JFrame(title);
 		        frame1.setPreferredSize(new Dimension(width, height));
 		        frame1.setMaximumSize(new Dimension(width, height));
@@ -105,14 +104,30 @@ public class Window extends JPanel implements Observer{
 		        game.start();
 
 			}
+		});
+		arcade.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) {
-				melon.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/sandia-1.png")));
+			public void mouseClicked(MouseEvent arg0) {
+				startTime= System.currentTimeMillis();
+				MP3Player slice=new MP3Player(new File("splatter.mp3"));
+				slice.play();
+				contentPane.removeAll();
+				//frame.remove(contentPane);
+				contentPane.revalidate();
+				contentPane.repaint();
+				frame.dispose();
+				game.handler.setType("arcade");
+				JFrame frame1 = new JFrame(title);
+		        frame1.setPreferredSize(new Dimension(width, height));
+		        frame1.setMaximumSize(new Dimension(width, height));
+		        frame1.setMinimumSize(new Dimension(width, height));
+		        frame1.setLocationRelativeTo(null);
+		        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        frame1.setResizable(false);
+		        frame1.add(game);
+		        frame1.setVisible(true);
+		        game.start();
 
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				melon.setIcon(new ImageIcon(Window.class.getResource("/initilalizer/sandia.png")));
 			}
 		});
 		//game.start();
@@ -129,12 +144,15 @@ public class Window extends JPanel implements Observer{
             System.out.println("melon background");
         }
         int runtime = (int) ((currentTime - startTime) / 1000);
-
+        if((runtime % 60)==61 && game.handler.getType()=="arcade") {
+            game.setGameOver(true);
+        }
         String time = String.format("%02d:%02d", runtime / 60, runtime % 60);
+        if(game.handler.getType()=="arcade") {time = String.format("%02d:%02d", runtime / 60, 60-(runtime % 60));}
         String highScore = String.format("%d", handler.getGameState().getHighestScore());
 		graphics.setColor(Color.YELLOW);
 		graphics.setFont(new Font("Bauhaus 93", Font.BOLD, 28));
-            graphics.drawString(time, 540, 30);
+        graphics.drawString(time, 540, 30);
         graphics.drawString("Score:" + points, 30, 25);
         graphics.setFont(new Font("Bauhaus 93", Font.BOLD, 18));
         graphics.setColor(Color.YELLOW);
