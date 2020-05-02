@@ -1,4 +1,5 @@
-N.B: right click on either fruit to begin
+N.B: run the jar file by opening the batch file(Run From Here.bat)
+     right click on either fruit to begin
      press escape(esc) to pause the game and press enter to resume
      each game mode has its own highscore
      difficulties change from starter to expert after reaching 30 points
