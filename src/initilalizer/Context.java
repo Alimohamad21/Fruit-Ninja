@@ -1,5 +1,7 @@
 package initilalizer;
 
+import javax.xml.bind.JAXBException;
+
 public class Context {
     private IMainGameActions difficulties;
     private String difficulty;
@@ -12,7 +14,7 @@ public class Context {
         this.difficulty = difficulty;
     }
 
-    public void starter() {
+    public void starter() throws JAXBException {
         if (difficulty.equalsIgnoreCase("Easy")) {
             difficulties=(IMainGameActions) new GameLoop();
         } else if (difficulty.equalsIgnoreCase("Normal")) {

@@ -50,7 +50,7 @@ public class StarterDifficulty implements ILevel {
             while (!handler.getListOfObjects().isEmpty()) handler.removeOutOfBoundObjects();
         }
         entered = true;
-        random = 2 + numberOfFruits.nextInt(2);
+        random = 2 + numberOfFruits.nextInt(4);
         boolean bombCreated = false;
         Random bombs = new Random();
         fruitCount += random;
@@ -61,6 +61,7 @@ public class StarterDifficulty implements ILevel {
             try {
                 if (noOfBombs == 1 && !bombCreated) {
                     handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
+                    if(handler.getType().equals("classic"))
                     bombSound.play();
                     bombCreated = true;
                 }

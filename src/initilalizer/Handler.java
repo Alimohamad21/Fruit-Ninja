@@ -3,8 +3,10 @@ package initilalizer;
 import gameObject.GameObject;
 import gameObject.GameObject.ObjectType;
 import gameObject.fruits.GameState;
+import jaco.mp3.player.MP3Player;
 
 import java.awt.Graphics;
+import java.io.File;
 import java.util.List;
 
 import static initilalizer.GameLoop.HEIGHT;
@@ -14,7 +16,8 @@ public class Handler {
     private Mouse mouse;
     private String type;
 
-	public Handler(String type) {
+
+    public Handler(String type) {
     	this.type=type;
         gameState = new GameState();
         mouse = new Mouse();
@@ -32,9 +35,9 @@ public class Handler {
         /**m7dsh yghayr el loop dy lel tanya,CM exception**/
         for (int i = 0; i < gameState.getGameObjects().size(); i++) {
             GameObject object = gameState.getGameObjects().get(i);
+            mouse.render(graphics);
             if(type=="arcade" && String.valueOf(object.getObjectType()) == "bomb") { continue;}
             object.render(graphics);
-            mouse.render(graphics);
         }
 
     }
@@ -51,7 +54,6 @@ public class Handler {
                     if (!gameState.getGameObjects().get(i).isSliced()) {
                         if (player.getLife() > 0 && type=="classic") {
                             player.setLife(player.getLife() - 1);
-                        
                         gameState.setMissedFruits(getMissedFruits() + 1);
                         }
                         }
@@ -114,4 +116,5 @@ public class Handler {
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
     }
+
 }

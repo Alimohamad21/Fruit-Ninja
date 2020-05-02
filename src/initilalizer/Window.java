@@ -1,6 +1,7 @@
 package initilalizer;
 
 import jaco.mp3.player.MP3Player;
+import main.HighScoreFileHandling;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -17,6 +18,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 public class Window extends JPanel implements Observer{
 
@@ -31,8 +35,12 @@ public class Window extends JPanel implements Observer{
 	private JLabel shadow;
 	private GameLoop game;
 	private long startTime=0 ;
+	JAXBContext jaxbContext = JAXBContext.newInstance(HighScoreFileHandling.class);
+	File file = new File("highscore.xml");
+	Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+	HighScoreFileHandling load = (HighScoreFileHandling) unmarshaller.unmarshal(file);
 
-	public Window(int width, int height, String title, GameLoop game) {
+	public Window(int width, int height, String title, GameLoop game) throws JAXBException {
 		frame= new JFrame(title);
 		frame.setPreferredSize(new Dimension(width,height));
 		frame.setMaximumSize(new Dimension(width,height));
@@ -101,6 +109,7 @@ public class Window extends JPanel implements Observer{
 		        frame1.setResizable(false);
 		        frame1.add(game);
 		        frame1.setVisible(true);
+		        game.setMode("classic");
 		        game.start();
 
 			}
@@ -126,6 +135,7 @@ public class Window extends JPanel implements Observer{
 		        frame1.setResizable(false);
 		        frame1.add(game);
 		        frame1.setVisible(true);
+		        game.setMode("arcade");
 		        game.start();
 
 			}
@@ -144,12 +154,21 @@ public class Window extends JPanel implements Observer{
             System.out.println("melon background");
         }
         int runtime = (int) ((currentTime - startTime) / 1000);
-        if((runtime % 60)==61 && game.handler.getType()=="arcade") {
-            game.setGameOver(true);
-        }
         String time = String.format("%02d:%02d", runtime / 60, runtime % 60);
-        if(game.handler.getType()=="arcade") {time = String.format("%02d:%02d", runtime / 60, 60-(runtime % 60));}
-        String highScore = String.format("%d", handler.getGameState().getHighestScore());
+        if(runtime>=58&& game.handler.getType().equals("arcade"))
+		{
+			time="00:00";
+		}
+		if(runtime>1 && (runtime % 60)==0 && game.handler.getType().equals("arcade")) {
+			game.setGameOver(true);
+
+		}
+		String highScore;
+        if(game.handler.getType()=="arcade") {time = String.format("%02d:%02d", runtime / 60, 60-(runtime % 60));
+         highScore = String.format("%d", load.getArcadeHighScore());
+        }
+        else highScore = String.format("%d", load.getClassicHighScore());
+
 		graphics.setColor(Color.YELLOW);
 		graphics.setFont(new Font("Bauhaus 93", Font.BOLD, 28));
         graphics.drawString(time, 540, 30);

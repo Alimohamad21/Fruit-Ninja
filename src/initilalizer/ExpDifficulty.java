@@ -55,7 +55,8 @@ public class ExpDifficulty implements ILevel{
 	            try {
 	                while(j<noOfBombs && !bombCreated) {
 	                    handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
-	                    bombSound.play();
+						if(handler.getType().equals("classic"))
+							bombSound.play();
 	                    Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
 	                    j++;
 	                }

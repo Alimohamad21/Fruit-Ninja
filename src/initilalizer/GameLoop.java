@@ -8,10 +8,12 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.xml.bind.JAXBException;
 
 import gameObject.GameObject;
 import gameObject.fruits.GameState;
 import jaco.mp3.player.MP3Player;
+import main.HighScoreFileHandling;
 
 public class GameLoop extends Canvas implements Runnable {
     private static final long serialVersionUID = 2916851953456180804L;
@@ -31,11 +33,17 @@ public class GameLoop extends Canvas implements Runnable {
     BufferedImage death3 = null;
     BufferedImage gameover=null;
     MP3Player music = new MP3Player(new File("menu.mp3"));
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    private String mode;
     private GameState gameState;
     long currentTime;
 
 
-    public GameLoop() {
+    public GameLoop() throws JAXBException {
         gameState = new GameState();
         handler = new Handler("classic");
         player = Player.getPlayer();
@@ -83,7 +91,11 @@ public class GameLoop extends Canvas implements Runnable {
             delta += (now - lastTime) / tick_time_in_nanoseconds;
             lastTime = now;
             while (delta >= 1) {
-                tick();
+                try {
+                    tick();
+                } catch (JAXBException e) {
+                    e.printStackTrace();
+                }
                 delta--;
             }
             if (running) {
@@ -117,9 +129,12 @@ public class GameLoop extends Canvas implements Runnable {
         stop();
     }
 
-    public void tick() {
+    public void tick() throws JAXBException {
         MP3Player gameOverSound = new MP3Player(new File("over.mp3"));
         if (gameOver) {
+            GameState save= new GameState();
+            if(mode.equals("arcade"))save.saveArcadeHighScore(player);
+            else if(mode.equals("classic"))save.saveClassHighScore(player);
             music.stop();
             gameOverSound.play();
             getGraphics().drawImage(gameover, 50, 200, null);
