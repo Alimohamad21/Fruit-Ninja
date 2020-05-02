@@ -1,6 +1,8 @@
 package initilalizer;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,7 +15,7 @@ import gameObject.GameObject;
 import gameObject.GameState;
 import jaco.mp3.player.MP3Player;
 
-public class GameLoop extends Canvas implements Runnable {
+public class GameLoop extends Canvas implements Runnable, KeyListener {
     private static final long serialVersionUID = 2916851953456180804L;
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
 
@@ -28,12 +30,13 @@ public class GameLoop extends Canvas implements Runnable {
     private boolean gameOver = false;
     private boolean frenzyMode = false;
     private boolean x2Mode = false;
+    private boolean paused = false;
 
-    BufferedImage death1 = null;
-    BufferedImage death2 = null;
-    BufferedImage death3 = null;
-    BufferedImage gameover = null;
-    MP3Player music = new MP3Player(new File("menu.mp3"));
+    private BufferedImage death1 = null;
+    private BufferedImage death2 = null;
+    private BufferedImage death3 = null;
+    private BufferedImage gameover = null;
+    private MP3Player music = new MP3Player(new File("menu.mp3"));
 
     public void setMode(String mode) {
         this.mode = mode;
@@ -41,7 +44,7 @@ public class GameLoop extends Canvas implements Runnable {
 
     private String mode;
     private GameState gameState;
-    long currentTime;
+    private long currentTime;
 
 
     public GameLoop() throws JAXBException {
@@ -71,7 +74,8 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void stop() {
-        try {  Thread.sleep(4000);
+        try {
+            Thread.sleep(4000);
             player.setPoints(0);
             player.setLife(3);
             new GameLoop();
@@ -170,6 +174,8 @@ public class GameLoop extends Canvas implements Runnable {
             }
             Mouse mouse = new Mouse();
             addMouseMotionListener(mouse);
+            //  Slicing slicing = new Slicing();
+            addKeyListener(this);
             MP3Player splash = new MP3Player(new File("splatter.mp3"));
             int i;
             for (i = 0; i < handler.getListOfObjects().size(); i++) {
@@ -231,7 +237,7 @@ public class GameLoop extends Canvas implements Runnable {
 
         Graphics graphics = bufferSt.getDrawGraphics();
         long currentTime = System.currentTimeMillis();
-            graphics.drawImage(img1, 0, 0, null);
+        graphics.drawImage(img1, 0, 0, null);
         window.drawLabels(handler, graphics, currentTime);
         if (handler.getType() == "classic") {
             graphics.drawImage(life1, WIDTH - 215, 5, null);
@@ -245,10 +251,12 @@ public class GameLoop extends Canvas implements Runnable {
             }
         }
 
-        if(frenzyMode) {graphics.setFont(new Font("Bauhaus 93",Font.BOLD,45));
+        if (frenzyMode) {
+            graphics.setFont(new Font("Bauhaus 93", Font.BOLD, 45));
             graphics.drawString("FRENZY MODE!", 200, 70);
         }
-        if(x2Mode) {graphics.setFont(new Font("Bauhaus 93",Font.BOLD,60));
+        if (x2Mode) {
+            graphics.setFont(new Font("Bauhaus 93", Font.BOLD, 60));
             graphics.drawString("X2 SCORE!", 200, 80);
         }
         handler.render(graphics);
@@ -274,5 +282,29 @@ public class GameLoop extends Canvas implements Runnable {
 
     public void setX2Mode(boolean x2Mode) {
         this.x2Mode = x2Mode;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+            if (!paused) {
+                paused = true;
+                try {
+                    Thread.sleep(1000000000);
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+            } else paused = false;
+      //  paused = false;
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
