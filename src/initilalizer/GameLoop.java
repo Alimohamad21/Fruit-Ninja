@@ -149,13 +149,20 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void render() throws InterruptedException {
+        int factor = 1;
         try {
-            //System.out.println(frenzyMode);
-            int factor = 1;
             if ((System.nanoTime() - currentTime) / 1000000000 <= 7) {
-                factor = 2;
+                if (isFrenzyMode()) {
+                    factor = 2;
+                    /**New frenzy Label*/
+                }
+                if (isX2Mode()) {
+                    factor = 2;
+                    /**New x2label Label*/
+                }
+
                 /**Insert Music*/
-                /**New Label*/
+
             } else {
                 frenzyMode = false;
                 x2Mode = false;
