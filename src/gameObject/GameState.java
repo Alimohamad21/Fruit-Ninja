@@ -1,9 +1,7 @@
-package gameObject.fruits;
+package gameObject;
 
-import gameObject.GameObject;
-import initilalizer.Handler;
 import initilalizer.Player;
-import main.HighScoreFileHandling;
+import fileHandling.HighScoreFileHandling;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -71,28 +69,32 @@ public class GameState {
     public void setHighestScore(int highestScore) {
         this.highestScore = highestScore;
     }
+
     public void saveArcadeHighScore(Player player) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(HighScoreFileHandling.class);
         File file = new File("highscore.xml");
         Marshaller marshaller = jaxbContext.createMarshaller();
-        HighScoreFileHandling save=new HighScoreFileHandling();
+        HighScoreFileHandling save = new HighScoreFileHandling();
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         HighScoreFileHandling load = (HighScoreFileHandling) unmarshaller.unmarshal(file);
-        if (player.getPoints()>load.getArcadeHighScore())
-        {save.setArcadeHighScore(player.getPoints());
+        if (player.getPoints() > load.getArcadeHighScore()) {
+            save.setArcadeHighScore(player.getPoints());
             save.setClassicHighScore(load.getClassicHighScore());
-            marshaller.marshal(save,file); }
+            marshaller.marshal(save, file);
+        }
     }
+
     public void saveClassHighScore(Player player) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(HighScoreFileHandling.class);
         File file = new File("highscore.xml");
         Marshaller marshaller = jaxbContext.createMarshaller();
-        HighScoreFileHandling save=new HighScoreFileHandling();
+        HighScoreFileHandling save = new HighScoreFileHandling();
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         HighScoreFileHandling load = (HighScoreFileHandling) unmarshaller.unmarshal(file);
-        if (player.getPoints()>load.getClassicHighScore())
-        {save.setClassicHighScore(player.getPoints());
+        if (player.getPoints() > load.getClassicHighScore()) {
+            save.setClassicHighScore(player.getPoints());
             save.setArcadeHighScore(load.getArcadeHighScore());
-            marshaller.marshal(save,file);}
+            marshaller.marshal(save, file);
+        }
     }
 }

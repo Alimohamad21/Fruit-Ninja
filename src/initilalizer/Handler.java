@@ -2,11 +2,9 @@ package initilalizer;
 
 import gameObject.GameObject;
 import gameObject.GameObject.ObjectType;
-import gameObject.fruits.GameState;
-import jaco.mp3.player.MP3Player;
+import gameObject.GameState;
 
 import java.awt.Graphics;
-import java.io.File;
 import java.util.List;
 
 import static initilalizer.GameLoop.HEIGHT;

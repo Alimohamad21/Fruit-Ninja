@@ -1,14 +1,12 @@
 package initilalizer;
 
 import jaco.mp3.player.MP3Player;
-import main.HighScoreFileHandling;
+import fileHandling.HighScoreFileHandling;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;

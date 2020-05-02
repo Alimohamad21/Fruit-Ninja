@@ -3,15 +3,11 @@ package gameObject.fruits;
 //import initilalizer.Slicing;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.awt.MouseInfo;
-import java.awt.event.MouseListener;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import initilalizer.Window;
+
+import gameObject.GameState;
 
 public class Apple extends Fruit {
 	private BufferedImage img1 = null;

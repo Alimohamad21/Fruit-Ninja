@@ -16,16 +16,15 @@ public class Dangerous extends Bombs{
         sliced = false;
     }
 
-    public void render(Graphics graphics) {
-		try
-		{
-			img1 = ImageIO.read(this.getClass().getResource("boom.png"));
-			setImg(img1);
+	public void render(Graphics graphics) {
+		if (!sliced) {
+			try {
+				img1 = ImageIO.read(this.getClass().getResource("boom.png"));
+				setImg(img1);
+			} catch (IOException exc) {
+				System.out.println("Dangerous rendering failed");
+			}
+			graphics.drawImage(img1, (int) xCoordinate, (int) yCoordinate, null);
 		}
-		catch ( IOException exc )
-		{
-		    System.out.println("Dangerous rendering failed");
-		}
-		graphics.drawImage(img1, (int)xCoordinate,(int)yCoordinate, null);
-    }
+	}
 }

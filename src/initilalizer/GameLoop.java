@@ -1,7 +1,6 @@
 package initilalizer;
 
-import java.awt.Canvas;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,9 +10,8 @@ import javax.imageio.ImageIO;
 import javax.xml.bind.JAXBException;
 
 import gameObject.GameObject;
-import gameObject.fruits.GameState;
+import gameObject.GameState;
 import jaco.mp3.player.MP3Player;
-import main.HighScoreFileHandling;
 
 public class GameLoop extends Canvas implements Runnable {
     private static final long serialVersionUID = 2916851953456180804L;
@@ -73,10 +71,13 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void stop() {
-        try {
+        try {  Thread.sleep(4000);
+            player.setPoints(0);
+            player.setLife(3);
+            new GameLoop();
             thread.join();
             running = false;
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | JAXBException e) {
             e.printStackTrace();
         }
     }
@@ -230,7 +231,7 @@ public class GameLoop extends Canvas implements Runnable {
 
         Graphics graphics = bufferSt.getDrawGraphics();
         long currentTime = System.currentTimeMillis();
-        graphics.drawImage(img1, 0, 0, null);
+            graphics.drawImage(img1, 0, 0, null);
         window.drawLabels(handler, graphics, currentTime);
         if (handler.getType() == "classic") {
             graphics.drawImage(life1, WIDTH - 215, 5, null);
@@ -244,6 +245,12 @@ public class GameLoop extends Canvas implements Runnable {
             }
         }
 
+        if(frenzyMode) {graphics.setFont(new Font("Bauhaus 93",Font.BOLD,45));
+            graphics.drawString("FRENZY MODE!", 200, 70);
+        }
+        if(x2Mode) {graphics.setFont(new Font("Bauhaus 93",Font.BOLD,60));
+            graphics.drawString("X2 SCORE!", 200, 80);
+        }
         handler.render(graphics);
         graphics.dispose();
         bufferSt.show();

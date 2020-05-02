@@ -1,12 +1,11 @@
 package gameObject.bombs;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import gameObject.GameObject;
-import gameObject.fruits.GameState;
+import gameObject.GameState;
 import initilalizer.GameLoop;
 
 public abstract class Bombs extends GameObject {

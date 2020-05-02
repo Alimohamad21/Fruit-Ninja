@@ -1,7 +1,5 @@
 package gameObject;
 
-import gameObject.fruits.GameState;
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
