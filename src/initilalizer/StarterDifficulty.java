@@ -26,14 +26,15 @@ public class StarterDifficulty implements ILevel {
     }
 
     @Override
-    public void initObjects(Thread thread, Handler handler) {
+    public void initObjects(Thread thread, Handler handler, GameLoop game) {
         int random, i;
+        //   int waitingTime = timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops);
         int fruitCount = 0;
         FruitTypes fruitTypes = gameObject.fruits.FruitTypes.Apple;
         BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
         if (!entered) {
             try {
-                handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
+                handler.addObject(factory.create(fruitTypes.randomFruitTypes(),game));
                 mp3Player.play();
                 Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
             } catch (InterruptedException e) {
@@ -41,7 +42,7 @@ public class StarterDifficulty implements ILevel {
             while (!handler.getListOfObjects().isEmpty()) handler.removeOutOfBoundObjects();
             for (i = 0; i < 2; i++) {
                 try {
-                    handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
+                    handler.addObject(factory.create(fruitTypes.randomFruitTypes(),game ));
                     mp3Player.play();
                     Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
                 } catch (InterruptedException e) {
@@ -54,16 +55,20 @@ public class StarterDifficulty implements ILevel {
         boolean bombCreated = false;
         Random bombs = new Random();
         fruitCount += random;
+        if (game.isFrenzyMode())
+            random = 10;
         int noOfBombs = bombs.nextInt(2);
         for (i = 0; i < random; i++) {
-            handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
+            handler.addObject(factory.create(fruitTypes.randomFruitTypes(),game));
             mp3Player.play();
             try {
-                if (noOfBombs == 1 && !bombCreated) {
-                    handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
-                    if(handler.getType().equals("classic"))
-                    bombSound.play();
-                    bombCreated = true;
+                if (!game.isFrenzyMode()) {
+                    if (noOfBombs == 1 && !bombCreated) {
+                        handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
+                        if (handler.getType().equals("classic"))
+                            bombSound.play();
+                        bombCreated = true;
+                    }
                 }
                 Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
 
@@ -71,6 +76,7 @@ public class StarterDifficulty implements ILevel {
 
             }
         }
+
         while (!handler.getListOfObjects().isEmpty()) handler.removeOutOfBoundObjects();
     }
 }

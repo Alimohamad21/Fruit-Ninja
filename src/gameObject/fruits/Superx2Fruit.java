@@ -11,6 +11,7 @@ public class Superx2Fruit extends SuperFruit {
 
     public Superx2Fruit(int x, int y) {
         super(x, y);
+        objectLife=50;
     }
 
     public void render(Graphics graphics) {
@@ -19,7 +20,7 @@ public class Superx2Fruit extends SuperFruit {
                 img1 = ImageIO.read(this.getClass().getResource("Score_2x_Banana.png"));
                 setImg(img1);
             } catch (IOException exc) {
-                System.out.println("apple rendering failed");
+                System.out.println("Score_2x rendering failed");
             }
         } else {
             try {

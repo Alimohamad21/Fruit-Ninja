@@ -6,10 +6,11 @@ import static initilalizer.GameLoop.WIDTH;
 import java.util.Random;
 
 import gameObject.fruits.*;
+import initilalizer.GameLoop;
 
 public class FruitFactory {
 
-    public Fruit create(String fruitType) throws NullPointerException {
+    public Fruit create(String fruitType, GameLoop game) throws NullPointerException {
         Random r = new Random();
         Random superFruit = new Random();
         int noOfSuperFruits = superFruit.nextInt(10);
@@ -21,10 +22,16 @@ public class FruitFactory {
             fruit = new Watermelon(x_axis, HEIGHT - 33);
         if (fruitType.equalsIgnoreCase("Apple"))
             fruit = new Apple(x_axis, HEIGHT - 33);
-        if (fruitType.equalsIgnoreCase("Peach"))
-            fruit = new Peach(x_axis, HEIGHT - 33);
+        if (fruitType.equalsIgnoreCase("Peach")) {
+            if (noOfSuperFruits - 6 == 0 && !game.isFrenzyMode()&&!game.isX2Mode())
+                fruit = new SuperFrenzyFruit(x_axis, HEIGHT - 33);
+            else
+                fruit = new Peach(x_axis, HEIGHT - 33);
+            // fruit = new SuperFrenzyFruit(x_axis, HEIGHT - 33);
+
+        }
         if (fruitType.equalsIgnoreCase("Banana")) {
-            if (noOfSuperFruits - 6 == 0)
+            if (noOfSuperFruits - 6 == 0 && !game.isFrenzyMode()&&!game.isX2Mode())
                 fruit = new Superx2Fruit(x_axis, HEIGHT - 33);
             else
                 fruit = new Banana(x_axis, HEIGHT - 33);

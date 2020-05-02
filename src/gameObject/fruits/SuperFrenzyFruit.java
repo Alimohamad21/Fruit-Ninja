@@ -11,6 +11,7 @@ public class SuperFrenzyFruit  extends SuperFruit {
 
     public SuperFrenzyFruit(int x, int y) {
         super(x, y);
+        objectLife=75;
     }
 
     public void render(Graphics graphics) {

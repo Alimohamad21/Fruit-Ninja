@@ -13,7 +13,7 @@ public class LevelController implements Observer{
 		this.points= points;
 	}
 	
-	public void Generate(Thread thread,Handler handler) {
+	public void Generate(Thread thread,Handler handler,GameLoop game) {
 		while(true) {
         if(points<30){
         	if(!stCreated) {
@@ -24,7 +24,7 @@ public class LevelController implements Observer{
         	difficulty= new ExpDifficulty();
         	expCreated=true;}
 		}
-			difficulty.initObjects(thread,handler);
+			difficulty.initObjects(thread,handler, game);
 		}
     }
 }

@@ -28,10 +28,13 @@ public class GameLoop extends Canvas implements Runnable {
     protected Window window;
     private LevelController control;
     private boolean gameOver = false;
+    private boolean frenzyMode = false;
+    private boolean x2Mode = false;
+
     BufferedImage death1 = null;
     BufferedImage death2 = null;
     BufferedImage death3 = null;
-    BufferedImage gameover=null;
+    BufferedImage gameover = null;
     MP3Player music = new MP3Player(new File("menu.mp3"));
 
     public void setMode(String mode) {
@@ -51,7 +54,7 @@ public class GameLoop extends Canvas implements Runnable {
         player.register(control);
         window = new Window(WIDTH, HEIGHT, "FRUIT NINJA", this);
         player.register(window);
-        control.Generate(thread, handler);
+        control.Generate(thread, handler, this);
     }
 
     public void start() {
@@ -132,9 +135,9 @@ public class GameLoop extends Canvas implements Runnable {
     public void tick() throws JAXBException {
         MP3Player gameOverSound = new MP3Player(new File("over.mp3"));
         if (gameOver) {
-            GameState save= new GameState();
-            if(mode.equals("arcade"))save.saveArcadeHighScore(player);
-            else if(mode.equals("classic"))save.saveClassHighScore(player);
+            GameState save = new GameState();
+            if (mode.equals("arcade")) save.saveArcadeHighScore(player);
+            else if (mode.equals("classic")) save.saveClassHighScore(player);
             music.stop();
             gameOverSound.play();
             getGraphics().drawImage(gameover, 50, 200, null);
@@ -147,6 +150,16 @@ public class GameLoop extends Canvas implements Runnable {
 
     public void render() throws InterruptedException {
         try {
+            //System.out.println(frenzyMode);
+            int factor = 1;
+            if ((System.nanoTime() - currentTime) / 1000000000 <= 7) {
+                factor = 2;
+                /**Insert Music*/
+                /**New Label*/
+            } else {
+                frenzyMode = false;
+                x2Mode = false;
+            }
             Mouse mouse = new Mouse();
             addMouseMotionListener(mouse);
             MP3Player splash = new MP3Player(new File("splatter.mp3"));
@@ -156,20 +169,20 @@ public class GameLoop extends Canvas implements Runnable {
                 if (Mouse.x >= object.getXCoordinate() && Mouse.x <= object.getXCoordinate() + object.getImg().getWidth()) {
                     if (Mouse.y >= object.getYCoordinate() && Mouse.y <= object.getYCoordinate() + object.getImg().getHeight()) {
                         if (!object.isSliced()) {
-                            if (String.valueOf(object.getObjectType()) == "fruit") {
-                                int factor=1;
-                                if((System.nanoTime()-currentTime)/1000000000<=7)
-                                {
-                                    factor=2;
-                                    /**Insert Music*/
-                                    /**New Label*/
-                                }
+                            if (String.valueOf(object.getObjectType()).equals("fruit")) {
                                 player.setPoints(player.getPoints() + factor);
                                 object.setSliced(true);
                                 splash.play();
-                            } else if (String.valueOf(object.getObjectType()) == "superFruit") {
-                                currentTime =System.nanoTime();
-                                player.setPoints(player.getPoints() + 5);
+                            } else if (String.valueOf(object.getObjectType()).equals("superFruit")) {
+                                if (object.getObjectLife() == 50) {
+                                    currentTime = System.nanoTime();
+                                    player.setPoints(player.getPoints() + 5);
+                                    x2Mode = true;
+                                } else if (object.getObjectLife() == 75) {
+                                    frenzyMode = true;
+                                    currentTime = System.nanoTime();
+                                }
+
                                 object.setSliced(true);
                                 splash.play();
                             } else {
@@ -212,23 +225,40 @@ public class GameLoop extends Canvas implements Runnable {
         long currentTime = System.currentTimeMillis();
         graphics.drawImage(img1, 0, 0, null);
         window.drawLabels(handler, graphics, currentTime);
-        if(handler.getType()=="classic") {
-        graphics.drawImage(life1, WIDTH - 215, 5, null);
-        graphics.drawImage(life2, WIDTH - 190, 5, null);
-        graphics.drawImage(life3, WIDTH - 160, 5, null);
-        if (player.getLife() == 2)
-            graphics.drawImage(death1, WIDTH - 215, 5, null);
-        if (player.getLife() == 1) {
-            graphics.drawImage(death1, WIDTH - 215, 5, null);
-            graphics.drawImage(death2, WIDTH - 190, 5, null);
-        }
+        if (handler.getType() == "classic") {
+            graphics.drawImage(life1, WIDTH - 215, 5, null);
+            graphics.drawImage(life2, WIDTH - 190, 5, null);
+            graphics.drawImage(life3, WIDTH - 160, 5, null);
+            if (player.getLife() == 2)
+                graphics.drawImage(death1, WIDTH - 215, 5, null);
+            if (player.getLife() == 1) {
+                graphics.drawImage(death1, WIDTH - 215, 5, null);
+                graphics.drawImage(death2, WIDTH - 190, 5, null);
+            }
         }
 
         handler.render(graphics);
         graphics.dispose();
         bufferSt.show();
     }
+
     public void setGameOver(Boolean gameOver) {
-    	this.gameOver=gameOver;
+        this.gameOver = gameOver;
+    }
+
+    public boolean isFrenzyMode() {
+        return frenzyMode;
+    }
+
+    public void setFrenzyMode(boolean frenzyMode) {
+        this.frenzyMode = frenzyMode;
+    }
+
+    public boolean isX2Mode() {
+        return x2Mode;
+    }
+
+    public void setX2Mode(boolean x2Mode) {
+        this.x2Mode = x2Mode;
     }
 }

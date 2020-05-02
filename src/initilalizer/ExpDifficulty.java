@@ -37,22 +37,27 @@ public class ExpDifficulty implements ILevel{
 	    }
 
 	    @Override
-	    public void initObjects(Thread thread,Handler handler) {
+	    public void initObjects(Thread thread,Handler handler,GameLoop game) {
 	    int random,i,j;
 	    int fruitCount = 0;
+
 	    //while (true) {
 	        random = 2+numberOfFruits.nextInt(2);
 	        boolean bombCreated=false;
 	        Random bombs=new Random();
+
 	        fruitCount += random;
 	        int noOfBombs=bombs.nextInt(3);
 	        j=0;
+			if(game.isFrenzyMode())
+				random=20;
 	        for (i = 0; i < random; i++){
 	            FruitTypes fruitTypes = gameObject.fruits.FruitTypes.Apple;
 	            BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
-	            handler.addObject(factory.create(fruitTypes.randomFruitTypes()));
+	            handler.addObject(factory.create(fruitTypes.randomFruitTypes(),game ));
 	            mp3Player.play();
 	            try {
+	            	if(!game.isFrenzyMode()){
 	                while(j<noOfBombs && !bombCreated) {
 	                    handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
 						if(handler.getType().equals("classic"))
@@ -61,6 +66,7 @@ public class ExpDifficulty implements ILevel{
 	                    j++;
 	                }
 	                if(j>0) {bombCreated=true;}
+	            	}
 	                Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
 
 	            } catch (InterruptedException e) {
