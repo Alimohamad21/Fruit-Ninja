@@ -27,6 +27,7 @@ public class Banana extends Fruit {
         super(xCoordinate, yCoordinate, velocityX, velocityY, objectLife, sliced, points, img);
 
     }
+
     @Override
     public void SaveObject(GameState gameState) {
         gameState.gameObjects.add(new Apple(this.getXCoordinate(), this.getYCoordinate(), this.getVelocityX(), this.getVelocityY(), this.getObjectLife(), this.isSliced(), this.getPoints(), this.getImg()));

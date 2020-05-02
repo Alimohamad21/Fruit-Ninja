@@ -1,9 +1,9 @@
 package initilalizer;
 
 public interface IMainGameActions {
-     void run();
+    void run();
 
-     void tick();
+    void tick();
 
-     void render();
+    void render();
 }

@@ -1,12 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Fruit Ninja:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="missed superfruits">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/highscore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/highscore.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/META-INF/Fruit Ninja.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/bombs/Bombs.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/bombs/Bombs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/bombs/BombsTypes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/bombs/BombsTypes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/bombs/Fatal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/bombs/Fatal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/fruits/Apple.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/fruits/Apple.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/fruits/Banana.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/fruits/Banana.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/fruits/Peach.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/fruits/Peach.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/fruits/Strawberry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/gameObject/fruits/Strawberry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/ExpDifficulty.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/ExpDifficulty.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/FirstDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/FirstDisplay.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/GameLoop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Slicing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Slicing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/LevelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/LevelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Mouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Mouse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Window$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Window$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Window$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Window$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Fruit Ninja/initilalizer/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/factories/BombFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/factories/BombFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/factories/FruitFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/factories/FruitFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/bombs/Bombs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/bombs/Bombs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/bombs/BombsTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/bombs/BombsTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/bombs/Fatal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/bombs/Fatal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/fruits/Apple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/fruits/Apple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/fruits/Banana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/fruits/Banana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/fruits/FruitTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/fruits/FruitTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/fruits/Peach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/fruits/Peach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/fruits/Strawberry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/fruits/Strawberry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/fruits/SuperFreezeFruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/fruits/SuperFreezeFruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/fruits/SuperFrenzyFruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/fruits/SuperFrenzyFruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameObject/fruits/Superx2Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameObject/fruits/Superx2Fruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/Context.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/Context.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/ExpDifficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/ExpDifficulty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/FirstDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/FirstDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/initilalizer/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/initilalizer/Slicing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/Slicing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/ILevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/ILevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/IMainGameActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/IMainGameActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/LevelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/Mouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/Mouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/StarterDifficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/StarterDifficulty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/initilalizer/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/initilalizer/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +152,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -359,10 +404,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1587160420286" />
-    <state x="398" y="144" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588102916456">
+    <state x="398" y="144" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588460920878">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="398" y="144" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1588102916456" />
+    <state x="398" y="144" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1588460920878" />
     <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1588454518710">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -372,6 +417,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1587059178804" />
+    <state x="480" y="124" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1588460843608">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="480" y="124" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1588460843608" />
     <state x="950" y="297" width="433" height="236" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1588345522985">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -381,9 +430,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="566" y="318" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.824@0.0.1536.824" timestamp="1587070376539" />
-    <state x="523" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587069511174">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="436" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588459915802">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="436" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1588459915802" />
     <state x="523" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1587069511174" />
     <state x="416" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588102073301">
       <screen x="0" y="0" width="1280" height="680" />
@@ -403,54 +453,54 @@
     </state>
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1587218188625" />
     <state x="505" y="116" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586976041286" />
-    <state width="1493" height="166" key="GridCell.Tab.0.bottom" timestamp="1588455404243">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1588460868217">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1588443626332" />
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1588460868217" />
     <state width="1493" height="166" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588455404243" />
-    <state width="1493" height="166" key="GridCell.Tab.0.center" timestamp="1588455404242">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1588460868216">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1588443626332" />
+    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1588460868216" />
     <state width="1493" height="166" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588455404242" />
-    <state width="1493" height="166" key="GridCell.Tab.0.left" timestamp="1588455404242">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1588460868216">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1588443626332" />
+    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1588460868216" />
     <state width="1493" height="166" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588455404242" />
-    <state width="1493" height="166" key="GridCell.Tab.0.right" timestamp="1588455404243">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1588460868216">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1588443626332" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1588460868216" />
     <state width="1493" height="166" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588455404243" />
-    <state width="1493" height="94" key="GridCell.Tab.1.bottom" timestamp="1588446812035">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1588460288333">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1588438379212" />
+    <state width="1237" height="204" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1588460288333" />
     <state width="1493" height="94" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588446812035" />
-    <state width="1493" height="94" key="GridCell.Tab.1.center" timestamp="1588446812035">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="204" key="GridCell.Tab.1.center" timestamp="1588460288333">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1588438379212" />
+    <state width="1237" height="204" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1588460288333" />
     <state width="1493" height="94" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588446812035" />
-    <state width="1493" height="94" key="GridCell.Tab.1.left" timestamp="1588446812034">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="204" key="GridCell.Tab.1.left" timestamp="1588460288333">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1588438379212" />
+    <state width="1237" height="204" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1588460288333" />
     <state width="1493" height="94" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588446812034" />
-    <state width="1493" height="94" key="GridCell.Tab.1.right" timestamp="1588446812035">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="204" key="GridCell.Tab.1.right" timestamp="1588460288333">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1588438379212" />
+    <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1588460288333" />
     <state width="1493" height="94" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588446812035" />
     <state x="531" y="133" key="RollbackChangesDialog" timestamp="1588364879668">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="531" y="133" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1588364879668" />
-    <state x="231" y="0" key="SettingsEditor" timestamp="1587218192271">
+    <state x="231" y="0" key="SettingsEditor" timestamp="1588460849954">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="231" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1587218192271" />
+    <state x="231" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1588460849954" />
     <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1586976685232" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588453257493">
       <screen x="0" y="0" width="1536" height="824" />

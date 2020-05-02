@@ -1,5 +1,5 @@
 package initilalizer;
 
 public interface ILevel {
-     void initObjects(Thread thread, Handler handler,GameLoop game);
+    void initObjects(Thread thread, Handler handler, GameLoop game);
 }

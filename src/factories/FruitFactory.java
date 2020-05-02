@@ -23,7 +23,7 @@ public class FruitFactory {
         if (fruitType.equalsIgnoreCase("Apple"))
             fruit = new Apple(x_axis, HEIGHT - 33);
         if (fruitType.equalsIgnoreCase("Peach")) {
-            if (noOfSuperFruits - 6 == 0 && !game.isFrenzyMode()&&!game.isX2Mode())
+            if (noOfSuperFruits - 6 == 0 && !game.isFrenzyMode() && !game.isX2Mode())
                 fruit = new SuperFrenzyFruit(x_axis, HEIGHT - 33);
             else
                 fruit = new Peach(x_axis, HEIGHT - 33);
@@ -31,7 +31,7 @@ public class FruitFactory {
 
         }
         if (fruitType.equalsIgnoreCase("Banana")) {
-            if (noOfSuperFruits - 6 == 0 && !game.isFrenzyMode()&&!game.isX2Mode())
+            if (noOfSuperFruits - 6 == 0 && !game.isFrenzyMode() && !game.isX2Mode())
                 fruit = new Superx2Fruit(x_axis, HEIGHT - 33);
             else
                 fruit = new Banana(x_axis, HEIGHT - 33);

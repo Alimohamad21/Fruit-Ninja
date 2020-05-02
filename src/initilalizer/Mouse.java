@@ -17,42 +17,43 @@ import javax.swing.*;
 public class Mouse implements MouseMotionListener {
 
 
-	List<GameObject> listOfObjects;
-	Canvas window;
-	static int x, y;
-	public static int getX() {
-		return x;
-	}
+    List<GameObject> listOfObjects;
+    Canvas window;
+    static int x, y;
+
+    public static int getX() {
+        return x;
+    }
 
 
-	public static void setX(int x) {
-		Mouse.x = x;
-	}
+    public static void setX(int x) {
+        Mouse.x = x;
+    }
 
 
-	public static int getY() {
-		return y;
-	}
+    public static int getY() {
+        return y;
+    }
 
 
-	public static void setY(int y) {
-		Mouse.y = y;
-	}
+    public static void setY(int y) {
+        Mouse.y = y;
+    }
 
-	private static boolean mouseDragged = false;
-	private BufferedImage img1 = null;
+    private static boolean mouseDragged = false;
+    private BufferedImage img1 = null;
 
-	public Mouse() {
-	}
+    public Mouse() {
+    }
 
 
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		mouseDragged = true;
-		int i;
-		//System.out.println("mouse dragging");
-		x = e.getX();
-		y = e.getY();
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        mouseDragged = true;
+        int i;
+        //System.out.println("mouse dragging");
+        x = e.getX();
+        y = e.getY();
 		/*try
 		{
 			blade = ImageIO.read(this.getClass().getResource("flash.png"));
@@ -75,28 +76,29 @@ public class Mouse implements MouseMotionListener {
 				}
 			}
 		}*/
-	}
+    }
 
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		//System.out.println("mouse is released");
-		x = y = 0;
-		mouseDragged=false;
-	}
-	public void setImg(BufferedImage img) {
-		this.img1 = img;
-	}
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        //System.out.println("mouse is released");
+        x = y = 0;
+        mouseDragged = false;
+    }
 
-	public void render(Graphics graphics) {
-		if (mouseDragged) {
-			try {
-				img1 = ImageIO.read(this.getClass().getResource("blade.png"));
-				setImg(img1);
-			} catch (IOException exc) {
-				System.out.println("blade rendering failed");
-			}
-			graphics.drawImage(img1, x-60, y, null);
-		}
-	}
+    public void setImg(BufferedImage img) {
+        this.img1 = img;
+    }
+
+    public void render(Graphics graphics) {
+        if (mouseDragged) {
+            try {
+                img1 = ImageIO.read(this.getClass().getResource("blade.png"));
+                setImg(img1);
+            } catch (IOException exc) {
+                System.out.println("blade rendering failed");
+            }
+            graphics.drawImage(img1, x - 60, y, null);
+        }
+    }
 
 }

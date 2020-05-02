@@ -11,7 +11,7 @@ public class Superx2Fruit extends SuperFruit {
 
     public Superx2Fruit(int x, int y) {
         super(x, y);
-        objectLife=50;
+        objectLife = 50;
     }
 
     public void render(Graphics graphics) {

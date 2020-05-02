@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class SuperFreezeFruit  extends SuperFruit {
+public class SuperFreezeFruit extends SuperFruit {
     private BufferedImage img1 = null;
     private BufferedImage img2 = null;
 

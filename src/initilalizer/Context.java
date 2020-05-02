@@ -16,7 +16,7 @@ public class Context {
 
     public void starter() throws JAXBException {
         if (difficulty.equalsIgnoreCase("Easy")) {
-            difficulties=(IMainGameActions) new GameLoop();
+            difficulties = (IMainGameActions) new GameLoop();
         } else if (difficulty.equalsIgnoreCase("Normal")) {
             difficulties = (IMainGameActions) new GameLoop();
         } else if (difficulty.equalsIgnoreCase("Hard")) {

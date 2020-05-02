@@ -8,7 +8,7 @@ public enum FruitTypes {
     Banana,
     Peach,
     Strawberry;
-     public FruitTypes fruitTypes;
+    public FruitTypes fruitTypes;
 
     public String randomFruitTypes() {
         Random random = new Random();

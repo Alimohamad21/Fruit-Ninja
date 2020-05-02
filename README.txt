@@ -1,4 +1,5 @@
-N.B: difficulties change from starter to expert after reaching 30 points
+N.B: right click on either fruit to begin
+     difficulties change from starter to expert after reaching 30 points
      special fruits are not very common so player will remain in the game for some time before encountering them
 
 

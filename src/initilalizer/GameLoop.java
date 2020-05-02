@@ -16,6 +16,7 @@ import gameObject.GameState;
 import jaco.mp3.player.MP3Player;
 
 public class GameLoop extends Canvas implements Runnable, KeyListener {
+
     private static final long serialVersionUID = 2916851953456180804L;
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
 
@@ -30,7 +31,6 @@ public class GameLoop extends Canvas implements Runnable, KeyListener {
     private boolean gameOver = false;
     private boolean frenzyMode = false;
     private boolean x2Mode = false;
-    private boolean paused = false;
 
     private BufferedImage death1 = null;
     private BufferedImage death2 = null;
@@ -155,6 +155,8 @@ public class GameLoop extends Canvas implements Runnable, KeyListener {
 
     public void render() throws InterruptedException {
         int factor = 1;
+
+
         try {
             if ((System.nanoTime() - currentTime) / 1000000000 <= 7) {
                 if (isFrenzyMode()) {
@@ -250,7 +252,6 @@ public class GameLoop extends Canvas implements Runnable, KeyListener {
                 graphics.drawImage(death2, WIDTH - 190, 5, null);
             }
         }
-
         if (frenzyMode) {
             graphics.setFont(new Font("Bauhaus 93", Font.BOLD, 45));
             graphics.drawString("FRENZY MODE!", 200, 70);
@@ -259,6 +260,7 @@ public class GameLoop extends Canvas implements Runnable, KeyListener {
             graphics.setFont(new Font("Bauhaus 93", Font.BOLD, 60));
             graphics.drawString("X2 SCORE!", 200, 80);
         }
+
         handler.render(graphics);
         graphics.dispose();
         bufferSt.show();
@@ -292,19 +294,14 @@ public class GameLoop extends Canvas implements Runnable, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-            if (!paused) {
-                paused = true;
-                try {
-                    Thread.sleep(1000000000);
-                } catch (InterruptedException interruptedException) {
-                    interruptedException.printStackTrace();
-                }
-            } else paused = false;
-      //  paused = false;
+            thread.suspend();
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            thread.resume();
+        }
     }
+
 
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 }

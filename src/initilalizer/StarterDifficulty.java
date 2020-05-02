@@ -34,7 +34,7 @@ public class StarterDifficulty implements ILevel {
         BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
         if (!entered) {
             try {
-                handler.addObject(factory.create(fruitTypes.randomFruitTypes(),game));
+                handler.addObject(factory.create(fruitTypes.randomFruitTypes(), game));
                 mp3Player.play();
                 Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
             } catch (InterruptedException e) {
@@ -42,7 +42,7 @@ public class StarterDifficulty implements ILevel {
             while (!handler.getListOfObjects().isEmpty()) handler.removeOutOfBoundObjects();
             for (i = 0; i < 2; i++) {
                 try {
-                    handler.addObject(factory.create(fruitTypes.randomFruitTypes(),game ));
+                    handler.addObject(factory.create(fruitTypes.randomFruitTypes(), game));
                     mp3Player.play();
                     Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
                 } catch (InterruptedException e) {
@@ -59,7 +59,7 @@ public class StarterDifficulty implements ILevel {
             random = 10;
         int noOfBombs = bombs.nextInt(2);
         for (i = 0; i < random; i++) {
-            handler.addObject(factory.create(fruitTypes.randomFruitTypes(),game));
+            handler.addObject(factory.create(fruitTypes.randomFruitTypes(), game));
             mp3Player.play();
             try {
                 if (!game.isFrenzyMode()) {

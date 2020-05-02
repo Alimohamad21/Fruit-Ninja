@@ -40,9 +40,9 @@ public class GameState {
     }
 
     public void load(GameState gameState) {
-      //  checkPoint.get(checkPoint.size() - 1);
-        Player.getPlayer().setLife( checkPoint.get(checkPoint.size() - 1).playerLife);
-        Player.getPlayer().setPoints( checkPoint.get(checkPoint.size() - 1).playerPoints);
+        //  checkPoint.get(checkPoint.size() - 1);
+        Player.getPlayer().setLife(checkPoint.get(checkPoint.size() - 1).playerLife);
+        Player.getPlayer().setPoints(checkPoint.get(checkPoint.size() - 1).playerPoints);
     }
 
 

@@ -9,10 +9,11 @@ import gameObject.GameState;
 import initilalizer.GameLoop;
 
 public abstract class Bombs extends GameObject {
-	protected ObjectType objectType = ObjectType.bomb;
+    protected ObjectType objectType = ObjectType.bomb;
     private boolean flag = false;
     private BufferedImage img = null;
-	@Override
+
+    @Override
     public ObjectType getObjectType() {
         return objectType;
     }
@@ -23,26 +24,27 @@ public abstract class Bombs extends GameObject {
     public void SaveObject(GameState gameState) {
 
     }
-    
+
     public Bombs(int x, int y) {
         super(x, y);
-        Random randomDirection=new Random();
-        if(xCoordinate<200)
-        velocityX=1.5;
-        else if(xCoordinate>300)
-         velocityX=-1.5;
-        else
-       {velocityX = -2+randomDirection.nextInt(5);}
-        velocityY =8;
+        Random randomDirection = new Random();
+        if (xCoordinate < 200)
+            velocityX = 1.5;
+        else if (xCoordinate > 300)
+            velocityX = -1.5;
+        else {
+            velocityX = -2 + randomDirection.nextInt(5);
+        }
+        velocityY = 8;
     }
 
     public void tick() {
-        xCoordinate+=velocityX;
+        xCoordinate += velocityX;
         yCoordinate -= velocityY;
-        Random maxHeight=new Random();
-        if (flag&& yCoordinate == GameLoop.HEIGHT - 32) yCoordinate = GameLoop.HEIGHT;
-      if (yCoordinate <= maxHeight.nextInt(300) || (yCoordinate >= GameLoop.HEIGHT - 32 && !flag)) {
-            velocityY-=0.35;
+        Random maxHeight = new Random();
+        if (flag && yCoordinate == GameLoop.HEIGHT - 32) yCoordinate = GameLoop.HEIGHT;
+        if (yCoordinate <= maxHeight.nextInt(300) || (yCoordinate >= GameLoop.HEIGHT - 32 && !flag)) {
+            velocityY -= 0.35;
             flag = true;
         }
     }

@@ -9,72 +9,74 @@ import gameObject.bombs.BombsTypes;
 import gameObject.fruits.FruitTypes;
 import jaco.mp3.player.MP3Player;
 
-public class ExpDifficulty implements ILevel{
+public class ExpDifficulty implements ILevel {
 
-	    private int timeBetweenLoops;
-	    BombFactory factory2 = new BombFactory();
-	    Random numberOfObjects = new Random();
-	    Random interval = new Random();
-	    FruitFactory factory = new FruitFactory();
-	    Random numberOfFruits = new Random();
-	    MP3Player mp3Player = new MP3Player(new File("throw.mp3"));
-	    MP3Player bombSound=new MP3Player(new File("Fuse.mp3"));
+    private int timeBetweenLoops;
+    BombFactory factory2 = new BombFactory();
+    Random numberOfObjects = new Random();
+    Random interval = new Random();
+    FruitFactory factory = new FruitFactory();
+    Random numberOfFruits = new Random();
+    MP3Player mp3Player = new MP3Player(new File("throw.mp3"));
+    MP3Player bombSound = new MP3Player(new File("Fuse.mp3"));
 
-	    public ExpDifficulty(){
-	    	timeBetweenLoops = 70;
-	    }
+    public ExpDifficulty() {
+        timeBetweenLoops = 70;
+    }
 
-	    /**
-	     * Getters And Setters
-	     **/
+    /**
+     * Getters And Setters
+     **/
 
-	    public int getTimeBetweenLoops() {
-	        return timeBetweenLoops;
-	    }
+    public int getTimeBetweenLoops() {
+        return timeBetweenLoops;
+    }
 
-	    public void setTimeBetweenLoops(int timeBetweenLoops) {
-	        this.timeBetweenLoops = timeBetweenLoops;
-	    }
+    public void setTimeBetweenLoops(int timeBetweenLoops) {
+        this.timeBetweenLoops = timeBetweenLoops;
+    }
 
-	    @Override
-	    public void initObjects(Thread thread,Handler handler,GameLoop game) {
-	    int random,i,j;
-	    int fruitCount = 0;
+    @Override
+    public void initObjects(Thread thread, Handler handler, GameLoop game) {
+        int random, i, j;
+        int fruitCount = 0;
 
-	    //while (true) {
-	        random = 2+numberOfFruits.nextInt(2);
-	        boolean bombCreated=false;
-	        Random bombs=new Random();
+        //while (true) {
+        random = 2 + numberOfFruits.nextInt(2);
+        boolean bombCreated = false;
+        Random bombs = new Random();
 
-	        fruitCount += random;
-	        int noOfBombs=bombs.nextInt(3);
-	        j=0;
-			if(game.isFrenzyMode())
-				random=20;
-	        for (i = 0; i < random; i++){
-	            FruitTypes fruitTypes = gameObject.fruits.FruitTypes.Apple;
-	            BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
-	            handler.addObject(factory.create(fruitTypes.randomFruitTypes(),game ));
-	            mp3Player.play();
-	            try {
-	            	if(!game.isFrenzyMode()){
-	                while(j<noOfBombs && !bombCreated) {
-	                    handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
-						if(handler.getType().equals("classic"))
-							bombSound.play();
-	                    Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
-	                    j++;
-	                }
-	                if(j>0) {bombCreated=true;}
-	            	}
-	                Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
+        fruitCount += random;
+        int noOfBombs = bombs.nextInt(3);
+        j = 0;
+        if (game.isFrenzyMode())
+            random = 20;
+        for (i = 0; i < random; i++) {
+            FruitTypes fruitTypes = gameObject.fruits.FruitTypes.Apple;
+            BombsTypes bombsTypes = gameObject.bombs.BombsTypes.Fatal;
+            handler.addObject(factory.create(fruitTypes.randomFruitTypes(), game));
+            mp3Player.play();
+            try {
+                if (!game.isFrenzyMode()) {
+                    while (j < noOfBombs && !bombCreated) {
+                        handler.addObject(factory2.create(bombsTypes.randomBombsTypes()));
+                        if (handler.getType().equals("classic"))
+                            bombSound.play();
+                        Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
+                        j++;
+                    }
+                    if (j > 0) {
+                        bombCreated = true;
+                    }
+                }
+                Thread.sleep(timeBetweenLoops + interval.nextInt(500 - timeBetweenLoops));
 
-	            } catch (InterruptedException e) {
-	                // System.out.println("Ali");
-	            }
-	        }
-	        while (!handler.getListOfObjects().isEmpty()) handler.removeOutOfBoundObjects();
-	   // }
-	}
+            } catch (InterruptedException e) {
+                // System.out.println("Ali");
+            }
+        }
+        while (!handler.getListOfObjects().isEmpty()) handler.removeOutOfBoundObjects();
+        // }
+    }
 
 }

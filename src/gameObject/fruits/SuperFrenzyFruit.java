@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class SuperFrenzyFruit  extends SuperFruit {
+public class SuperFrenzyFruit extends SuperFruit {
     private BufferedImage img1 = null;
     private BufferedImage img2 = null;
 
     public SuperFrenzyFruit(int x, int y) {
         super(x, y);
-        objectLife=75;
+        objectLife = 75;
     }
 
     public void render(Graphics graphics) {
